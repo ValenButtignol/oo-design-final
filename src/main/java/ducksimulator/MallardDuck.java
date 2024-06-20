@@ -1,5 +1,8 @@
 package ducksimulator;
 
+import ducksimulator.flybehavior.FlyWithWings;
+import ducksimulator.quackbehavior.Quack;
+
 public class MallardDuck extends Duck {
 
 	public MallardDuck() {

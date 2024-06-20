@@ -1,5 +1,8 @@
 package ducksimulator;
 
+import ducksimulator.flybehavior.FlyNoWay;
+import ducksimulator.quackbehavior.Quack;
+
 public class ModelDuck extends Duck {
 	public ModelDuck() {
 		flyBehavior = new FlyNoWay();

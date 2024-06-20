@@ -1,5 +1,7 @@
 package ducksimulator;
 
+import ducksimulator.flybehavior.FlyRocketPowered;
+
 public class DuckSimulator {
  
 	public static void main(String[] args) {

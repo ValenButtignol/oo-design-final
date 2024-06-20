@@ -1,4 +1,4 @@
-package ducksimulator;
+package ducksimulator.quackbehavior;
 
 public class Quack implements QuackBehavior {
 	public void quack() {

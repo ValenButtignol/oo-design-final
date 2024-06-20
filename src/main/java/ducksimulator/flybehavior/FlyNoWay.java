@@ -1,4 +1,4 @@
-package ducksimulator;
+package ducksimulator.flybehavior;
 
 public class FlyNoWay implements FlyBehavior {
 	public void fly() {

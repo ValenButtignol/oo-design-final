@@ -1,6 +1,9 @@
 package ducksimulator;
 
 import org.junit.jupiter.api.Test;
+
+import ducksimulator.flybehavior.FlyRocketPowered;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DuckSimulatorTests {

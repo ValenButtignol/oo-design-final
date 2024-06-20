@@ -1,5 +1,8 @@
 package ducksimulator;
 
+import ducksimulator.flybehavior.FlyBehavior;
+import ducksimulator.quackbehavior.QuackBehavior;
+
 public abstract class Duck {
 
 	FlyBehavior flyBehavior;
