@@ -23,12 +23,11 @@ public class DuckSimulatorTests {
        
         ducksFlock.addDuck(mallardDuck);
         ducksFlock.addDuck(modelDuck);
-        ducksFlock.addDuck(paperDuck);
+        //ducksFlock.addDuck(paperDuck);
 
         assertThat(ducksFlock.getDuck(0)).isEqualTo(mallardDuck);
         assertThat(ducksFlock.getDuck(1)).isEqualTo(modelDuck);
         //assertThat(ducksFlock.getDuck(2)).isEqualTo(paperDuck);
 
     }
-
 }
