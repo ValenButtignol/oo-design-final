@@ -13,7 +13,7 @@ public class Wizard extends AdventureCharacter {
     }
 
     public Wizard(Weapon weapon) {
-        if (weapon.getFightStyle() != fightStyle)
+        if (weapon.getFightStyle() != FightStyle.MAGE)
             throw new IllegalArgumentException("Weapon's fight style not compatible");
         this.weapon = weapon;
         hp = Constants.WIZARD_HP;

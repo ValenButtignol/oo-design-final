@@ -13,7 +13,7 @@ public class Knight extends AdventureCharacter {
     }
 
     public Knight(Weapon weapon) {
-        if (weapon.getFightStyle() != fightStyle)
+        if (weapon.getFightStyle() != FightStyle.MELEE)
             throw new IllegalArgumentException("Weapon's fight style not compatible");
         this.weapon = weapon;
         hp = Constants.KNIGHT_HP;

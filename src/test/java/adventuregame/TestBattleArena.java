@@ -40,6 +40,24 @@ public class TestBattleArena {
     }
 
     @ParameterizedTest
+    @MethodSource("weaponsChangeProviderWithCreatedCharacters")
+    public void testWeaponChangeFromCreatedCharacterWithWeapon(AdventureCharacter adventureCharacter, Weapon anotherWeapon) {
+        
+        Class<? extends Weapon> oldWeaponClass = adventureCharacter.getWeapon().getClass();
+        adventureCharacter.setWeapon(anotherWeapon);
+        assert(adventureCharacter.getWeapon().getClass() == anotherWeapon.getClass());
+        assert(oldWeaponClass != anotherWeapon.getClass());
+    }
+
+    private static Stream<Object> weaponsChangeProviderWithCreatedCharacters() {
+        return Stream.of(
+            Arguments.of(new Gladiator( new ShortSword()), new LongSword()),
+            Arguments.of(new Knight(new LongSword()), new ShortSword()),
+            Arguments.of(new Wizard( new Wand()), new Staff())
+        );
+    }
+
+    @ParameterizedTest
     @MethodSource("charactersProvider")
     public void testBattleArena(AdventureCharacter character1, AdventureCharacter character2) {
         BattleArena battleArena = new BattleArena(character1, character2);

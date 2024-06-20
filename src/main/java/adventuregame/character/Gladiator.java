@@ -13,7 +13,7 @@ public class Gladiator extends AdventureCharacter {
     }
 
     public Gladiator(Weapon weapon) {
-        if (weapon.getFightStyle() != fightStyle)
+        if (weapon.getFightStyle() != FightStyle.MELEE)
             throw new IllegalArgumentException("Weapon's fight style not compatible");        
         this.weapon = weapon;
         hp = Constants.GLADIATOR_HP;
