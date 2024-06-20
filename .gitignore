@@ -1,0 +1,18 @@
+# Vim tmp files
+**/*.swp
+
+# Gradle tmp files
+**/.gradle/
+**/build/
+
+/.metadata/
+
+#Class files
+*.class
+
+**/.vscode
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
