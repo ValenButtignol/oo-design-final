@@ -4,6 +4,7 @@ public class MockOutput implements Output {
 
     private boolean invoked = false;
     private String printInput;
+    
     @Override
     public void print(String toPrint) {
         invoked = true;

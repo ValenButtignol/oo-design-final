@@ -17,5 +17,4 @@ public class PrintFizzBuzz {
         String toPrint = String.join(",", res);
         output.print(toPrint);
     }
-
 }

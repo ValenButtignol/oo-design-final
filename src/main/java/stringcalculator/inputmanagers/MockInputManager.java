@@ -11,6 +11,5 @@ public class MockInputManager implements InputManager {
     @Override
     public String read() {
         return input;
-    }
-    
+    }   
 }

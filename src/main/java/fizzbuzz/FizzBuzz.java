@@ -1,8 +1,5 @@
 package fizzbuzz;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class FizzBuzz {
     private static int FIZZ = 3;
     private static int BUZZ = 5;
@@ -26,5 +23,4 @@ public class FizzBuzz {
         String digitStr = Integer.toString(digit);
         return numberStr.contains(digitStr);
     }
-
 }

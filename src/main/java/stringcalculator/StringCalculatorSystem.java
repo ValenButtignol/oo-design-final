@@ -1,6 +1,5 @@
 package stringcalculator;
 
-
 import stringcalculator.inputmanagers.InputManager;
 import stringcalculator.inputmanagers.MockInputManager;
 import stringcalculator.outputmanagers.MockOutputManager;

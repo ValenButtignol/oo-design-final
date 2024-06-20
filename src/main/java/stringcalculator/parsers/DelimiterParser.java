@@ -31,7 +31,6 @@ public class DelimiterParser {
         return processedDelimiters.contains(delimiter);
     }
 
-
     public void parseDelimiters() {
         resetProcessedDelimiters(); // reset to default delimiters in case of multiple calls.
         if (unprocessedDelimiters.isEmpty())

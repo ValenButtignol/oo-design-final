@@ -6,5 +6,4 @@ public class TerminalOutputManager implements OutputManager {
     public void print(Integer value) {
         System.out.println("The result is: " + value + "\n");
     }
-
 }

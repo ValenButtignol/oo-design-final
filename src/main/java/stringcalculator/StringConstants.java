@@ -9,5 +9,4 @@ public class StringConstants {
     public static final Character NEGATIVE = '-';
     public static final Character OPEN_DELIMITER = '[';
     public static final Character CLOSE_DELIMITER = ']';
-
 }

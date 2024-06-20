@@ -58,5 +58,4 @@ public class FizzBuzzNumbersTests {
         List<String> res = FizzBuzzSequence.fizzBuzzSequence(numbers);
         assertThat(res).isEqualTo(expected);
     }
-
 }

@@ -19,5 +19,4 @@ public class MockLoopOutputManager implements OutputManager {
     public void print(Integer result) {
         outputs.add(result.toString());
     }
-    
 }

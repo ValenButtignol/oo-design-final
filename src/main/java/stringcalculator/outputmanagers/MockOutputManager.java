@@ -12,5 +12,4 @@ public class MockOutputManager implements OutputManager {
     public void print(Integer value) {
         this.resultMessage = "The result is: " + value;
     }
-
 }
