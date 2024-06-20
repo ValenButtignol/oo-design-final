@@ -13,4 +13,18 @@ public abstract class Weapon {
     public FightStyle getFightStyle() {
         return fightStyle;
     }
+
+    @Override
+    public boolean equals(Object otherWeapon) {
+        if (this == otherWeapon) {
+            return true;
+        }
+        
+        if (getClass() != otherWeapon.getClass()) {
+            return false;
+        }
+
+        Weapon other = (Weapon) otherWeapon;
+        return damage.equals(other.damage) && fightStyle.equals(other.fightStyle);
+    }
 }

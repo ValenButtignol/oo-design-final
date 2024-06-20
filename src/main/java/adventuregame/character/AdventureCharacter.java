@@ -13,13 +13,9 @@ public abstract class AdventureCharacter {
         weapon = new BareFist();
     }
 
-    public AdventureCharacter(Weapon weapon) {
-        assert(weapon.getFightStyle() == fightStyle): "Weapon's fight style not compatible";
-        this.weapon = weapon;
-    }
-
     public void setWeapon(Weapon weapon) {
-        assert(weapon.getFightStyle() == fightStyle): "Weapon's fight style not compatible";
+        if (weapon.getFightStyle() != fightStyle)
+            throw new IllegalArgumentException("Weapon's fight style not compatible");
         this.weapon = weapon;
     }
 
@@ -28,7 +24,8 @@ public abstract class AdventureCharacter {
     }
 
     public void attack(AdventureCharacter otherCharacter) {
-        assert(isAlive()): "Character must be alive to attack another character.";
+        if (!isAlive())
+            throw new RuntimeException("Character must be alive to attack another character.");
         Integer damage = weapon.getDamage();
         otherCharacter.takeDamage(damage);
     }
@@ -39,5 +36,19 @@ public abstract class AdventureCharacter {
 
     public boolean isAlive() {
         return hp > 0;
+    }
+
+    @Override
+    public boolean equals(Object otherCharacter) {
+        if (this == otherCharacter) {
+            return true;
+        }
+        
+        if (getClass() != otherCharacter.getClass()) {
+            return false;
+        }
+
+        AdventureCharacter other = (AdventureCharacter) otherCharacter;
+        return hp.equals(other.hp) && weapon.equals(other.weapon);
     }
 }

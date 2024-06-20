@@ -1,5 +1,8 @@
 package adventuregame;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.util.stream.Stream;
 
 import org.junit.jupiter.params.ParameterizedTest;
@@ -50,5 +53,55 @@ public class TestBattleArena {
             Arguments.of(new Knight(new LongSword()), new Gladiator(new ShortSword())),
             Arguments.of(new Wizard(new Staff()), new Knight(new LongSword()))
         );
+    }
+
+    @ParameterizedTest
+    @MethodSource("characterAndWeaponProvider")
+    public void negativeTestSetWeapons(AdventureCharacter character, Weapon weapon) {  
+        Exception exceptionThrown = assertThrows(IllegalArgumentException.class, () -> {
+            character.setWeapon(weapon);
+        });
+        assertEquals("Weapon's fight style not compatible", exceptionThrown.getMessage());
+    }
+
+    private static Stream<Object> characterAndWeaponProvider() {
+        return Stream.of(
+            Arguments.of(new Gladiator(), new Wand()),
+            Arguments.of(new Gladiator(), new Staff()),
+            Arguments.of(new Knight(), new Staff()),
+            Arguments.of(new Knight(), new Wand()),
+            Arguments.of(new Wizard(), new ShortSword()),
+            Arguments.of(new Wizard(), new LongSword())
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("characterClassAndWeaponProvider")
+    public void negativeTestCharacterWithWeaponCreation(Class <? extends AdventureCharacter> characterClass, Weapon weapon) {
+        Exception exceptionThrown = assertThrows(IllegalArgumentException.class, () -> {
+            createCharacter(characterClass, weapon);
+        });
+        assertEquals("Weapon's fight style not compatible", exceptionThrown.getMessage());
+    }
+
+    private static Stream<Object> characterClassAndWeaponProvider() {
+        return Stream.of(
+            Arguments.of(Gladiator.class, new Wand()),
+            Arguments.of(Gladiator.class, new Staff()),
+            Arguments.of(Knight.class, new Staff()),
+            Arguments.of(Knight.class, new Wand()),
+            Arguments.of(Wizard.class, new ShortSword()),
+            Arguments.of(Wizard.class, new LongSword())
+        );
+    }
+
+    private static AdventureCharacter createCharacter(Class <? extends AdventureCharacter> characterClass, Weapon weapon) {
+        if (characterClass == Gladiator.class) {
+            return new Gladiator(weapon);
+        } else if (characterClass == Knight.class) {
+            return new Knight(weapon);
+        } else {
+            return new Wizard(weapon);
+        } 
     }
 }
