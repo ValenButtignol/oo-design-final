@@ -2,7 +2,7 @@ package fizzbuzz;
 
 import java.util.List;
 
-import fizzbuzz.output.Output;
+import output.Output;
 
 public class PrintFizzBuzz {
 

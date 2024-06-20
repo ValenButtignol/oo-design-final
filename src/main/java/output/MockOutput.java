@@ -1,4 +1,4 @@
-package fizzbuzz.output;
+package output;
 
 public class MockOutput implements Output {
 
