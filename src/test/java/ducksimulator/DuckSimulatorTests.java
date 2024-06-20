@@ -2,7 +2,14 @@ package ducksimulator;
 
 import org.junit.jupiter.api.Test;
 
+import ducksimulator.flybehavior.FlyBehavior;
 import ducksimulator.flybehavior.FlyRocketPowered;
+import ducksimulator.flybehavior.MockFlyNoWay;
+import ducksimulator.flybehavior.MockFlyRocketPowered;
+import ducksimulator.quackbehavior.Quack;
+import ducksimulator.quackbehavior.Squeak;
+import output.MockOutput;
+import output.Output;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -12,6 +19,32 @@ public class DuckSimulatorTests {
     public void testDuckSimulator() {
         Duck duck = new MallardDuck();
         duck.setFlyBehavior(new FlyRocketPowered());
+    }
+
+    @Test
+    public void testChangeOfFlyBehavior() {
+        Duck mallardDuck = new MallardDuck();
+        MockOutput output = new MockOutput();
+        FlyBehavior flyBehavior = new MockFlyNoWay(output);
+        
+        mallardDuck.setFlyBehavior(flyBehavior);
+        mallardDuck.performFly();
+        assert(output.getPrintInput().equals("I can't fly"));
+        
+        mallardDuck.setFlyBehavior(new MockFlyRocketPowered(output));
+        mallardDuck.performFly();
+        assert(output.getPrintInput().equals("I'm flying with a rocket"));
+    }
+
+    @Test
+    public void testChangeOfQuackBehavior() {
+        Duck mallardDuck = new MallardDuck();
+        mallardDuck.setQuackBehavior(new Quack());
+        
+        assert(mallardDuck.getQuackBehavior() instanceof Quack);
+
+        mallardDuck.setQuackBehavior(new Squeak());
+        assert(mallardDuck.getQuackBehavior() instanceof Squeak);
     }
 
     @Test
