@@ -8,7 +8,7 @@ public class PrimeNumberGeneratorRecursive implements PrimeNumberGenerator {
     public List<Integer> getPrimeNumbers(int number) {
         List<Integer> primeNumbers = new ArrayList<>();
 
-        for (int i = 2; i <= number; i++) {
+        for (int i = 0; i <= number; i++) {
             if (isPrimeNumber(i, 2)) 
                primeNumbers.add(i);
         }
