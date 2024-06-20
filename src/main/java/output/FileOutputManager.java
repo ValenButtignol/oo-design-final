@@ -1,18 +1,18 @@
-package primenumbers.outputs;
+package output;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
 
-public class FileOutput implements OutputManager {
+
+public class FileOutputManager implements OutputManager {
 
     private FileWriter file;
     
     @Override
-    public void print(List<Integer> output) {
+    public void print(String output) {
         try {
-            file = new FileWriter("firstNPrimeNumbers.txt");
-            file.write("Prime numbers: " + output);
+            file = new FileWriter("output.txt");
+            file.write(output);
             file.close();
           } catch (IOException e) {
             System.out.println("An error occurred.");

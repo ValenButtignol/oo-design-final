@@ -1,6 +1,6 @@
 package output;
 
-public class MockOutput implements Output {
+public class MockOutputManager implements OutputManager {
 
     private boolean invoked = false;
     private String printInput;

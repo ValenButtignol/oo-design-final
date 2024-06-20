@@ -1,12 +1,12 @@
 package ducksimulator.flybehavior;
 
-import output.Output;
+import output.OutputManager;
 
 public class MockFlyNoWay implements FlyBehavior {
 
-    private Output output;
+    private OutputManager output;
 
-    public MockFlyNoWay(Output output) {
+    public MockFlyNoWay(OutputManager output) {
         this.output = output;
     }
 

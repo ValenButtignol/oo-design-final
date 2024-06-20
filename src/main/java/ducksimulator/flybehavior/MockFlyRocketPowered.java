@@ -1,12 +1,12 @@
 package ducksimulator.flybehavior;
 
-import output.Output;
+import output.OutputManager;
 
 public class MockFlyRocketPowered implements FlyBehavior {
     
-    private Output output;
+    private OutputManager output;
 
-    public MockFlyRocketPowered(Output output) {
+    public MockFlyRocketPowered(OutputManager output) {
         this.output = output;
     }
 

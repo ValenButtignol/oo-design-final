@@ -1,5 +1,5 @@
 package output;
 
-public interface Output {
+public interface OutputManager {
     public void print(String toPrint);
 }
