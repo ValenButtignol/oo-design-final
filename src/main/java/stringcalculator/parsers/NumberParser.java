@@ -77,10 +77,7 @@ public class NumberParser {
             possibleDelimiter.append(character);
         }
 
-        if (possibleDelimiter.length() > 0)
-            throw new DelimiterAtEndException(possibleDelimiter.toString());
-
-        return i;
+        throw new DelimiterAtEndException(possibleDelimiter.toString());
     }
 
     private void addProcessedNumber(StringBuilder numbersString) {

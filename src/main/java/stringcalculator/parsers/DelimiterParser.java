@@ -75,10 +75,7 @@ public class DelimiterParser {
             delimiter.append(character);
         }
         
-        if (i == unprocessedDelimiters.length())
-            throw new CharacterOutsideDelimiterException(unprocessedDelimiters.charAt(i - 1));
-
-        return i;
+        throw new CharacterOutsideDelimiterException(unprocessedDelimiters.charAt(i - 1));
     }
     
     private int processCloseDelimiter(int i) {
