@@ -2,7 +2,7 @@ package ducksimulator;
 
 import ducksimulator.flybehavior.FlyRocketPowered;
 
-public class DuckSimulator {
+public class Main {
  
 	public static void main(String[] args) {
 		Duck mallard = new MallardDuck();
