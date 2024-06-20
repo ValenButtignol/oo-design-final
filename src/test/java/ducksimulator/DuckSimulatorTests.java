@@ -8,8 +8,8 @@ import ducksimulator.flybehavior.MockFlyNoWay;
 import ducksimulator.flybehavior.MockFlyRocketPowered;
 import ducksimulator.quackbehavior.Quack;
 import ducksimulator.quackbehavior.Squeak;
-import output.MockOutput;
-import output.Output;
+import output.MockOutputManager;
+import output.OutputManager;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,7 +24,7 @@ public class DuckSimulatorTests {
     @Test
     public void testChangeOfFlyBehavior() {
         Duck mallardDuck = new MallardDuck();
-        MockOutput output = new MockOutput();
+        MockOutputManager output = new MockOutputManager();
         FlyBehavior flyBehavior = new MockFlyNoWay(output);
         
         mallardDuck.setFlyBehavior(flyBehavior);

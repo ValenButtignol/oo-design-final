@@ -1,9 +1,9 @@
-package primenumbers;
+package primenumber;
 
 import java.util.List;
 
-import primenumbers.outputs.OutputManager;
-import primenumbers.primenumbergenerators.PrimeNumberGenerator;
+import output.OutputManager;
+import primenumber.primenumbergenerators.PrimeNumberGenerator;
 
 public class PrimeNumberSystem {
     
@@ -17,7 +17,7 @@ public class PrimeNumberSystem {
 
     public List<Integer> printFirstNPrimeNumbers(int number) {
         List<Integer> primeNumbers = primeNumberGenerator.getPrimeNumbers(number);
-        outputManager.print(primeNumbers);
+        outputManager.print(primeNumbers.toString());
 
         return primeNumbers;
     }

@@ -1,6 +1,6 @@
-package primenumbers;
+package primenumber;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -9,22 +9,17 @@ import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import primenumbers.outputs.MockOutput;
-import primenumbers.primenumbergenerators.PrimeNumberGenerator;
-import primenumbers.primenumbergenerators.PrimeNumberGeneratorRecursive;
-import primenumbers.primenumbergenerators.PrimeNumberGeneratorWithDivisors;
+import primenumber.primenumbergenerators.PrimeNumberGenerator;
+import primenumber.primenumbergenerators.PrimeNumberGeneratorRecursive;
+import primenumber.primenumbergenerators.PrimeNumberGeneratorWithDivisors;
 
-public class PrimeNumberSystemTests {
+
+public class PrimeNumberGeneratorTests {
     
-    MockOutput outputManager = new MockOutput();
-
     @ParameterizedTest
     @MethodSource("PrimeNumberGeneratorProvider")
     public void testPrimeNumberGenerators(PrimeNumberGenerator primeNumberGenerator, int number, List<Integer> expectedResult) {
-        
-        PrimeNumberSystem primeNumberSystem = new PrimeNumberSystem(primeNumberGenerator, outputManager);
-        List<Integer> primeNumbers = primeNumberSystem.printFirstNPrimeNumbers(number);
-        assertThat(outputManager.getResultMessage()).isEqualTo("Prime numbers: " + primeNumbers);  
+        assertEquals(primeNumberGenerator.getPrimeNumbers(number), expectedResult);        
     }
 
     public static Collection<Object[]> PrimeNumberGeneratorProvider() {

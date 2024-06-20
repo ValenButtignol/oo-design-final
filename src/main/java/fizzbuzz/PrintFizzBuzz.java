@@ -2,13 +2,13 @@ package fizzbuzz;
 
 import java.util.List;
 
-import output.Output;
+import output.OutputManager;
 
 public class PrintFizzBuzz {
 
-    Output output;
+    OutputManager output;
 
-    public PrintFizzBuzz(Output output) {
+    public PrintFizzBuzz(OutputManager output) {
         this.output = output;
     }
 
