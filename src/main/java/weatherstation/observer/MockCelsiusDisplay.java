@@ -29,6 +29,6 @@ public class MockCelsiusDisplay implements Observer, DisplayElement {
     }
 
 	public void display() {
-		data = " " + convertIntoCelsius(temperature);
+		data = "" + convertIntoCelsius(temperature);
 	}   
 }
