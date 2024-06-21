@@ -9,4 +9,9 @@ public class Staff extends Weapon {
         damage = Constants.STAFF_DAMAGE;
         fightStyle = FightStyle.MAGE;
     }
+
+    @Override
+    public String toString() {
+        return "Staff";
+    }
 }

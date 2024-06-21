@@ -9,4 +9,9 @@ public class Wand extends Weapon {
         damage = Constants.WAND_DAMAGE;
         fightStyle = FightStyle.MAGE;
     }
+
+    @Override
+    public String toString() {
+        return "Wand";
+    }
 }

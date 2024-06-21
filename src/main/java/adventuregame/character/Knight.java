@@ -19,4 +19,9 @@ public class Knight extends AdventureCharacter {
         hp = Constants.KNIGHT_HP;
         fightStyle = FightStyle.MELEE;
     }
+
+    @Override
+    public String toString() {
+        return "Knight";
+    }
 }

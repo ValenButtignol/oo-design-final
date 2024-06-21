@@ -19,4 +19,9 @@ public class Gladiator extends AdventureCharacter {
         hp = Constants.GLADIATOR_HP;
         fightStyle = FightStyle.MELEE;
     }
+
+    @Override
+    public String toString() {
+        return "Gladiator";
+    }
 }

@@ -9,4 +9,9 @@ public class LongSword extends Weapon {
         damage = Constants.LONG_SWORD_DAMAGE;
         fightStyle = FightStyle.MELEE;
     }
+
+    @Override
+    public String toString() {
+        return "Long Sword";
+    }
 }

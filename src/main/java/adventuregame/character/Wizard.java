@@ -19,4 +19,9 @@ public class Wizard extends AdventureCharacter {
         hp = Constants.WIZARD_HP;
         fightStyle = FightStyle.MAGE;
     }
+
+    @Override
+    public String toString() {
+        return "Wizard";
+    }
 }

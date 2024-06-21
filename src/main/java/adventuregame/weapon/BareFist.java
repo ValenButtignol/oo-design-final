@@ -8,4 +8,9 @@ public class BareFist extends Weapon {
         damage = Constants.BARE_FIST_DAMAGE;
         fightStyle = FightStyle.DEFAULT;
     }
+
+    @Override
+    public String toString() {
+        return "Bare Fist";
+    }
 }
