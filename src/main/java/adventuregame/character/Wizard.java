@@ -24,4 +24,9 @@ public class Wizard extends AdventureCharacter {
     public String toString() {
         return "Wizard";
     }
+
+    @Override
+    public int hashCode() {
+        return Constants.WIZARD_HP + weapon.hashCode();
+    }
 }

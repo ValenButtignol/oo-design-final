@@ -54,6 +54,7 @@ public abstract class AdventureCharacter {
         }
 
         AdventureCharacter other = (AdventureCharacter) otherCharacter;
-        return hp.equals(other.hp) && weapon.equals(other.weapon);
+        return weapon.equals(other.weapon);
     }
+    
 }

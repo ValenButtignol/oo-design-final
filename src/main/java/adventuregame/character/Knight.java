@@ -24,4 +24,9 @@ public class Knight extends AdventureCharacter {
     public String toString() {
         return "Knight";
     }
+
+    @Override
+    public int hashCode() {
+        return Constants.KNIGHT_HP + weapon.hashCode();
+    }
 }

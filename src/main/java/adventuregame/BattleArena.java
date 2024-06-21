@@ -25,6 +25,11 @@ public class BattleArena implements Subject {
         return winner;
     }
 
+    public void setCharacters(AdventureCharacter character1, AdventureCharacter character2) {
+        this.character1 = character1;
+        this.character2 = character2;
+    }
+
     public void fight() {
         notifyStart(character1, character2);
         while (!isEnded()) {

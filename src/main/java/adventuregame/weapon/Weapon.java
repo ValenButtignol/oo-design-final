@@ -27,4 +27,9 @@ public abstract class Weapon {
         Weapon other = (Weapon) otherWeapon;
         return damage.equals(other.damage) && fightStyle.equals(other.fightStyle);
     }
+
+    @Override
+    public int hashCode() {
+        return damage;
+    }
 }

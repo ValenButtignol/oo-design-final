@@ -24,4 +24,9 @@ public class Gladiator extends AdventureCharacter {
     public String toString() {
         return "Gladiator";
     }
+
+    @Override
+    public int hashCode() {
+        return Constants.GLADIATOR_HP + weapon.hashCode();
+    }
 }
