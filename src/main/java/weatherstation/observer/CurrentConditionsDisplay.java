@@ -1,6 +1,7 @@
 package weatherstation.observer;
 
 import weatherstation.WeatherData;
+import weatherstation.DisplayElement;
 
 public class CurrentConditionsDisplay implements Observer, DisplayElement {
 	private float temperature;

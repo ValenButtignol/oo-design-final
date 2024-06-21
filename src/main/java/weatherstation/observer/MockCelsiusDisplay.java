@@ -1,6 +1,7 @@
 package weatherstation.observer;
 
 import weatherstation.WeatherData;
+import weatherstation.DisplayElement;
 
 public class MockCelsiusDisplay implements Observer, DisplayElement {
 
