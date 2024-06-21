@@ -23,6 +23,10 @@ public abstract class AdventureCharacter {
         return weapon;
     }
 
+    public Integer getHp() {
+        return hp;
+    }
+
     public void attack(AdventureCharacter otherCharacter) {
         if (!isAlive())
             throw new RuntimeException("Character must be alive to attack another character.");
@@ -32,6 +36,7 @@ public abstract class AdventureCharacter {
 
     private void takeDamage(Integer damage) {
         hp -= damage;
+        hp = hp < 0 ? 0 : hp;
     }
 
     public boolean isAlive() {
