@@ -4,14 +4,14 @@ import adventuregame.Subject;
 import adventuregame.character.AdventureCharacter;
 import adventuregame.displays.DisplayElement;
 
-public class WinnerObserver implements Observer {
+public class BattleEndObserver implements Observer {
  
     private Subject battleArena;
     private AdventureCharacter winner;
     private AdventureCharacter loser;
     private DisplayElement displayElement;
 
-    public WinnerObserver(Subject battleArena, DisplayElement displayElement) {
+    public BattleEndObserver(Subject battleArena, DisplayElement displayElement) {
         this.battleArena = battleArena;
         battleArena.registerObserver(this);
         this.displayElement = displayElement;

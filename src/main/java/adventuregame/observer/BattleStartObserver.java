@@ -37,8 +37,8 @@ public class BattleStartObserver implements Observer {
         Weapon weapon1 = character1.getWeapon();
         Weapon weapon2 = character2.getWeapon();
 
-        displayElement.display("Battle between " + character1.toString() + " with " + weapon1.toString() + " vs "
-            + character2.toString() + "with" + weapon2.toString() + " has started!");
+        displayElement.display("Battle Started: " + character1.toString() + " with " + weapon1.toString() + " vs "
+            + character2.toString() + " with " + weapon2.toString());
     }
 
 }

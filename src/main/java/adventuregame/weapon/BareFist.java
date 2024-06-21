@@ -11,6 +11,6 @@ public class BareFist extends Weapon {
 
     @Override
     public String toString() {
-        return "Bare Fist";
+        return "Bare Fists";
     }
 }

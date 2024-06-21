@@ -28,18 +28,22 @@ public class BattleArena implements Subject {
     public void fight() {
         notifyStart(character1, character2);
         while (!isEnded()) {
-            if (isCharacter1Turn) {
-                character1.attack(character2);
-                notifyAttack(character1, character2);    
-            } else {
-                character2.attack(character1);
-                notifyAttack(character2, character1);    
-            }
-            isCharacter1Turn = !isCharacter1Turn;
+            attack();
         }
 
         setWinner();
         notifyEnd(winner, loser);
+    }
+
+    public void attack() {
+        if (isCharacter1Turn) {
+            character1.attack(character2);
+            notifyAttack(character1, character2);    
+        } else {
+            character2.attack(character1);
+            notifyAttack(character2, character1);    
+        }
+        isCharacter1Turn = !isCharacter1Turn;
     }
 
     @Override

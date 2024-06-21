@@ -38,7 +38,7 @@ public class AttackObserver implements Observer {
 
         displayElement.display(attacker.toString() + " attacks " + target.toString() + 
             " with " + weapon1.toString() + "!");
-        displayElement.display(attacker.toString() + " deals " + weapon1.getDamage() + "damage");
-        displayElement.display(target.toString() + " has " + target.getHp() + " health left!");
+        displayElement.display("- " + attacker.toString() + " deals " + weapon1.getDamage() + " damage");
+        displayElement.display("- " + target.toString() + " has " + target.getHp() + " health left!");
     }
 }
