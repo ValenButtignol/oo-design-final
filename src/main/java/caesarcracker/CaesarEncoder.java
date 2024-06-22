@@ -9,10 +9,10 @@ public class CaesarEncoder extends FilterInputStream {
     private StringBuilder encodedMessage;
     private int shifts; // amount of shifts to encode the input
 
-    public CaesarEncoder(InputStream in, int shifts) {
+    public CaesarEncoder(InputStream in, int shifts, StringBuilder encodedMessage) {
         super(in);
         this.shifts = shifts;
-        encodedMessage = new StringBuilder();    
+        this.encodedMessage = encodedMessage;    
     }
 
     @Override
@@ -20,7 +20,7 @@ public class CaesarEncoder extends FilterInputStream {
 		int c = in.read();
         if (c != -1) {
             c = encode((char) c);
-            encodedMessage.append(c);
+            encodedMessage.append((char) c);
         }
 		return c;
 	}
@@ -32,9 +32,5 @@ public class CaesarEncoder extends FilterInputStream {
         } else {
             return c; // Return unchanged for non-letter characters
         }
-    }
-
-    public String getEncodedMessage() {
-        return encodedMessage.toString();
     }
 }

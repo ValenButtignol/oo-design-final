@@ -1,42 +1,33 @@
 package caesarcracker;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.LineNumberInputStream;
+import java.io.StringBufferInputStream;
 
+@SuppressWarnings("deprecation")
 public class InputTest {
 	public static void main(String[] args) throws IOException {
 		int c;
-		InputStream in = null;
-		try {
-			in = new LineNumberInputStream(
-					new CaesarEncoder(
-						new FileInputStream("test.txt"), 3));
-
-			while((c = in.read()) >= 0) {
-				System.out.print((char)c);
-			}
-
-			LineNumberInputStream lineInputStream =	(LineNumberInputStream) in;
-			int lines = lineInputStream.getLineNumber();
-
-			CaesarEncoder caesarEncoder = (CaesarEncoder) in;
-			String encodedMessage = caesarEncoder.getEncodedMessage();
-
-			System.out.println();
-			System.out.println("Line count of the encoded message" + lines);
-
-			InputStream in2 = new LineNumberInputStream(
-					new CaesarDecoder(
-						new StringBufferInputStream(encodedMessage), 3));
-
-			lines = lineInputStream.getLineNumber();
-			
-			System.out.println();
-			System.out.println("Line count of the decoded message" + lines);
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			if (in != null) { in.close(); }
+		StringBuilder encodedMessage = new StringBuilder();
+		StringBuilder decodedMessage = new StringBuilder();
+		
+		LineNumberInputStream encoder = new LineNumberInputStream(
+			new CaesarEncoder(
+				new StringBufferInputStream("Este\n Mensaje\n Sera\n Codificado"), 3, encodedMessage));
+		
+		while ((c = encoder.read()) >= 0) {
+			System.out.print((char) c);
 		}
+		System.out.println();
+		System.out.println();
+
+		LineNumberInputStream decoder = new LineNumberInputStream(
+				new CaesarDecoder(
+					new StringBufferInputStream(encodedMessage.toString()), 3, decodedMessage));
+
+		while ((c = decoder.read()) >= 0) {
+			System.out.print((char) c);
+		}
+		System.out.println();
 	}
 }
