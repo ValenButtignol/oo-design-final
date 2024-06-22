@@ -1,4 +1,6 @@
-package pizzastore.factorymethod;
+package pizzastore.factorymethod.chicagopizza;
+
+import pizzastore.factorymethod.Pizza;
 
 public class ChicagoStyleCheesePizza extends Pizza {
 
@@ -10,7 +12,7 @@ public class ChicagoStyleCheesePizza extends Pizza {
 		toppings.add("Shredded Mozzarella Cheese");
 	}
  
-	void cut() {
+	protected void cut() {
 		System.out.println("Cutting the pizza into square slices");
 	}
 }

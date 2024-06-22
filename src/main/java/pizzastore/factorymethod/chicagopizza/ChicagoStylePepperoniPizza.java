@@ -1,4 +1,6 @@
-package pizzastore.factorymethod;
+package pizzastore.factorymethod.chicagopizza;
+
+import pizzastore.factorymethod.Pizza;
 
 public class ChicagoStylePepperoniPizza extends Pizza {
 	public ChicagoStylePepperoniPizza() {
@@ -13,7 +15,7 @@ public class ChicagoStylePepperoniPizza extends Pizza {
 		toppings.add("Sliced Pepperoni");
 	}
  
-	void cut() {
+	protected void cut() {
 		System.out.println("Cutting the pizza into square slices");
 	}
 }

@@ -1,16 +1,10 @@
 package pizzastore;
 
+import java.util.stream.Stream;
+
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import adventuregame.BattleArena;
-import adventuregame.character.Gladiator;
-import adventuregame.character.Wizard;
-import adventuregame.weapon.LongSword;
-import adventuregame.weapon.Staff;
-
-import java.util.stream.Stream;
 
 import pizzastore.simplefactory.Pizza;
 import pizzastore.simplefactory.PizzaStore;
@@ -24,15 +18,15 @@ import pizzastore.simplefactory.concretepizza.VeggiePizza;
 public class TestSimpleFactory {
     
     @ParameterizedTest
-    @MethodSource("pizzaProvider")
+    @MethodSource("simpleFactoryPizzaProvider")
     public void testSimpleFactoryPizzaCreation(String type, Class <? extends Pizza> expectedPizzaClass) {
         
-        PizzaStore pizzastore = new PizzaStore(new SimplePizzaFactory());
-        Pizza pizza = pizzastore.orderPizza(type);
+        PizzaStore pizzaStore = new PizzaStore(new SimplePizzaFactory());
+        Pizza pizza = pizzaStore.orderPizza(type);
         assert(pizza.getClass().equals(expectedPizzaClass));
     }
 
-    private static Stream<Object> pizzaProvider() {
+    private static Stream<Object> simpleFactoryPizzaProvider() {
         return Stream.of(
             Arguments.of("argentinian", ArgentinianPizza.class),
             Arguments.of("cheese", CheesePizza.class),

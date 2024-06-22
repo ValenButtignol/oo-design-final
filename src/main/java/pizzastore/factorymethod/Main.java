@@ -1,6 +1,6 @@
 package pizzastore.factorymethod;
 
-public class PizzaTestDrive {
+public class Main {
  
 	public static void main(String[] args) {
 		PizzaStore nyStore = new NYPizzaStore();

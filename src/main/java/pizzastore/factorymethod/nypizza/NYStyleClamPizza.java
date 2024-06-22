@@ -1,4 +1,6 @@
-package pizzastore.factorymethod;
+package pizzastore.factorymethod.nypizza;
+
+import pizzastore.factorymethod.Pizza;
 
 public class NYStyleClamPizza extends Pizza {
 
