@@ -1,5 +1,6 @@
 package adventuregame.weapon.gem;
 
+import adventuregame.FightStyle;
 import adventuregame.weapon.Weapon;
 
 public class BlueGem extends GemDecorator {
@@ -14,5 +15,9 @@ public class BlueGem extends GemDecorator {
 
     public Integer getGems() {
         return 1 + weapon.getGems();
+    }
+
+    public FightStyle getFightStyle() {
+        return weapon.getFightStyle();
     }
 }

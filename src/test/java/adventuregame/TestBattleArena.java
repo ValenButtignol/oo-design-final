@@ -3,6 +3,7 @@ package adventuregame;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,6 +19,10 @@ import adventuregame.weapon.ShortSword;
 import adventuregame.weapon.Staff;
 import adventuregame.weapon.Wand;
 import adventuregame.weapon.Weapon;
+import adventuregame.weapon.gem.BlueGem;
+import adventuregame.weapon.gem.GemDecorator;
+import adventuregame.weapon.gem.GreenGem;
+import adventuregame.weapon.gem.RedGem;
 
 public class TestBattleArena {
     
@@ -74,6 +79,35 @@ public class TestBattleArena {
     }
 
     @ParameterizedTest
+    @MethodSource("charactersWithGemsProvider")
+    public void testBattleArenaWithGems(AdventureCharacter character1, Weapon weapon1, List<Class <? extends GemDecorator>> gems1, 
+            AdventureCharacter character2, Weapon weapon2, List<Class <? extends GemDecorator>> gems2) {
+        
+        // arrange
+        weapon1 = createWeaponWithGem(gems1, weapon1);
+        weapon2 = createWeaponWithGem(gems2, weapon2);
+        character1.setWeapon(weapon1);
+        character2.setWeapon(weapon2);
+
+        BattleArena battleArena = new BattleArena(character1, character2);
+
+        // act
+        battleArena.fight();
+
+        System.out.println("Winner: " + battleArena.getWinner());
+        // assert
+        assert(battleArena.getWinner().equals(character1));
+    }
+
+    private static Stream<Object> charactersWithGemsProvider() {
+        return Stream.of(
+            Arguments.of(new Gladiator(), new LongSword(), List.of(RedGem.class), new Wizard(), new Wand(), List.of(GreenGem.class)),
+            Arguments.of(new Wizard(), new Staff(), List.of(GreenGem.class, RedGem.class), new Knight(), new ShortSword(), List.of(GreenGem.class, BlueGem.class)),
+            Arguments.of(new Knight(), new ShortSword(), List.of(RedGem.class, BlueGem.class, GreenGem.class, BlueGem.class), new Wizard(), new Staff(), List.of(RedGem.class))
+        );
+    }
+
+    @ParameterizedTest
     @MethodSource("characterAndWeaponProvider")
     public void negativeTestSetWeapons(AdventureCharacter character, Weapon weapon) {  
         Exception exceptionThrown = assertThrows(IllegalArgumentException.class, () -> {
@@ -121,5 +155,18 @@ public class TestBattleArena {
         } else {
             return new Wizard(weapon);
         } 
+    }
+
+    private static Weapon createWeaponWithGem(List<Class <? extends GemDecorator>> gems, Weapon weapon) {
+        for (Class <? extends GemDecorator> gem : gems) {
+            if (gem == RedGem.class) {
+                weapon = new RedGem(weapon);
+            } else if (gem == BlueGem.class) {
+                weapon =  new BlueGem(weapon);
+            } else {
+                weapon = new GreenGem(weapon);
+            } 
+        }
+        return weapon;
     }
 }

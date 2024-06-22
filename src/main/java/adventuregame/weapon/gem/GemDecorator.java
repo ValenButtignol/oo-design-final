@@ -1,5 +1,6 @@
 package adventuregame.weapon.gem;
 
+import adventuregame.FightStyle;
 import adventuregame.weapon.Weapon;
 
 public abstract class GemDecorator extends Weapon {
@@ -16,6 +17,8 @@ public abstract class GemDecorator extends Weapon {
     public abstract Integer getDamage();
 
     public abstract Integer getGems();
+
+    public abstract FightStyle getFightStyle();
 
     public Integer getMaxGems() {
         return weapon.getMaxGems();
