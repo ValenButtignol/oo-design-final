@@ -94,7 +94,6 @@ public class TestBattleArena {
         // act
         battleArena.fight();
 
-        System.out.println("Winner: " + battleArena.getWinner());
         // assert
         assert(battleArena.getWinner().equals(character1));
     }
