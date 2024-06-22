@@ -1,5 +1,20 @@
 package pizzastore.abstractfactory;
 
+import pizzastore.abstractfactory.cheese.Cheese;
+import pizzastore.abstractfactory.cheese.MozzarellaCheese;
+import pizzastore.abstractfactory.clam.Clams;
+import pizzastore.abstractfactory.clam.FrozenClams;
+import pizzastore.abstractfactory.dough.Dough;
+import pizzastore.abstractfactory.dough.ThickCrustDough;
+import pizzastore.abstractfactory.pepperoni.Pepperoni;
+import pizzastore.abstractfactory.pepperoni.SlicedPepperoni;
+import pizzastore.abstractfactory.sauce.PlumTomatoSauce;
+import pizzastore.abstractfactory.sauce.Sauce;
+import pizzastore.abstractfactory.veggie.BlackOlives;
+import pizzastore.abstractfactory.veggie.Eggplant;
+import pizzastore.abstractfactory.veggie.Spinach;
+import pizzastore.abstractfactory.veggie.Veggies;
+
 public class ChicagoPizzaIngredientFactory 
 	implements PizzaIngredientFactory 
 {

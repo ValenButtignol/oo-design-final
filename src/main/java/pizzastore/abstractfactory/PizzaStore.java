@@ -1,5 +1,7 @@
 package pizzastore.abstractfactory;
 
+import pizzastore.abstractfactory.pizza.Pizza;
+
 public abstract class PizzaStore {
  
 	protected abstract Pizza createPizza(String item);
