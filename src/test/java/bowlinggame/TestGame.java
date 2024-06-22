@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class GameTest {
+public class TestGame {
 
     @ParameterizedTest
     @MethodSource("rollsAndScoresProvider")
