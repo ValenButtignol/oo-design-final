@@ -1,4 +1,6 @@
-package starbuzz;
+package starbuzz.beverage;
+
+import starbuzz.CoffeeSize;
 
 public class HouseBlend extends Beverage {
 	public HouseBlend(CoffeeSize size) {

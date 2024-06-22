@@ -1,4 +1,6 @@
-package starbuzz;
+package starbuzz.beverage;
+
+import starbuzz.CoffeeSize;
 
 public abstract class Beverage {
 	String description = "Unknown Beverage";

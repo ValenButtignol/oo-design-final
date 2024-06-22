@@ -1,5 +1,13 @@
 package starbuzz;
 
+import starbuzz.beverage.Beverage;
+import starbuzz.beverage.DarkRoast;
+import starbuzz.beverage.Espresso;
+import starbuzz.beverage.HouseBlend;
+import starbuzz.condiment.Mocha;
+import starbuzz.condiment.Soy;
+import starbuzz.condiment.Whip;
+
 public class StarbuzzCoffee {
  
 	public static void main(String args[]) {

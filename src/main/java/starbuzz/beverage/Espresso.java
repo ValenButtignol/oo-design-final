@@ -1,4 +1,6 @@
-package starbuzz;
+package starbuzz.beverage;
+
+import starbuzz.CoffeeSize;
 
 public class Espresso extends Beverage {
   

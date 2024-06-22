@@ -1,4 +1,6 @@
-package starbuzz;
+package starbuzz.condiment;
+
+import starbuzz.beverage.Beverage;
 
 public class Cinnamon extends CondimentDecorator {
 

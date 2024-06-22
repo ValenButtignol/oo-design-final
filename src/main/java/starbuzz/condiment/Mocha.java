@@ -1,14 +1,17 @@
-package starbuzz;
+package starbuzz.condiment;
 
-public class Soy extends CondimentDecorator {
-	public Soy(Beverage beverage) {
+import starbuzz.CoffeeSize;
+import starbuzz.beverage.Beverage;
+
+public class Mocha extends CondimentDecorator {
+	public Mocha(Beverage beverage) {
 		this.beverage = beverage;
 	}
-
+ 
 	public String getDescription() {
-		return beverage.getDescription() + ", Soy";
+		return beverage.getDescription() + ", Mocha";
 	}
-
+ 
 	public Integer cost() {
 		Integer cost = beverage.cost();
 		if (beverage.getSize() == CoffeeSize.SMALL) {

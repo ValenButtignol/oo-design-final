@@ -1,12 +1,15 @@
-package starbuzz;
+package starbuzz.condiment;
 
-public class Mocha extends CondimentDecorator {
-	public Mocha(Beverage beverage) {
+import starbuzz.CoffeeSize;
+import starbuzz.beverage.Beverage;
+
+public class Whip extends CondimentDecorator {
+	public Whip(Beverage beverage) {
 		this.beverage = beverage;
 	}
  
 	public String getDescription() {
-		return beverage.getDescription() + ", Mocha";
+		return beverage.getDescription() + ", Whip";
 	}
  
 	public Integer cost() {

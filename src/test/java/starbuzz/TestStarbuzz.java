@@ -7,6 +7,19 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import starbuzz.beverage.Beverage;
+import starbuzz.beverage.DarkRoast;
+import starbuzz.beverage.Decaf;
+import starbuzz.beverage.Espresso;
+import starbuzz.beverage.HouseBlend;
+import starbuzz.beverage.RedCoffee;
+import starbuzz.condiment.Cinnamon;
+import starbuzz.condiment.CondimentDecorator;
+import starbuzz.condiment.Milk;
+import starbuzz.condiment.Mocha;
+import starbuzz.condiment.Soy;
+import starbuzz.condiment.Whip;
+
 public class TestStarbuzz {
     
     @ParameterizedTest

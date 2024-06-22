@@ -1,14 +1,17 @@
-package starbuzz;
- 
-public class Whip extends CondimentDecorator {
-	public Whip(Beverage beverage) {
+package starbuzz.condiment;
+
+import starbuzz.CoffeeSize;
+import starbuzz.beverage.Beverage;
+
+public class Soy extends CondimentDecorator {
+	public Soy(Beverage beverage) {
 		this.beverage = beverage;
 	}
- 
+
 	public String getDescription() {
-		return beverage.getDescription() + ", Whip";
+		return beverage.getDescription() + ", Soy";
 	}
- 
+
 	public Integer cost() {
 		Integer cost = beverage.cost();
 		if (beverage.getSize() == CoffeeSize.SMALL) {

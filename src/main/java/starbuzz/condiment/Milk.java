@@ -1,4 +1,7 @@
-package starbuzz;
+package starbuzz.condiment;
+
+import starbuzz.CoffeeSize;
+import starbuzz.beverage.Beverage;
 
 public class Milk extends CondimentDecorator {
 	public Milk(Beverage beverage) {
