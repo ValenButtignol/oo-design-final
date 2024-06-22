@@ -1,8 +1,10 @@
-package pizzastore.abstractfactory.pizza;
+package pizzastore.abstractfactory;
 
-import pizzastore.abstractfactory.ChicagoPizzaIngredientFactory;
-import pizzastore.abstractfactory.PizzaIngredientFactory;
-import pizzastore.abstractfactory.PizzaStore;
+import pizzastore.abstractfactory.pizza.CheesePizza;
+import pizzastore.abstractfactory.pizza.ClamPizza;
+import pizzastore.abstractfactory.pizza.PepperoniPizza;
+import pizzastore.abstractfactory.pizza.Pizza;
+import pizzastore.abstractfactory.pizza.VeggiePizza;
 
 public class ChicagoPizzaStore extends PizzaStore {
 

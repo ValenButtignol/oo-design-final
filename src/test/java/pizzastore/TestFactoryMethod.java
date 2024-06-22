@@ -9,6 +9,7 @@ import pizzastore.factorymethod.ArgentinianPizzaStore;
 import pizzastore.factorymethod.ChicagoPizzaStore;
 import pizzastore.factorymethod.NYPizzaStore;
 import pizzastore.factorymethod.Pizza;
+import pizzastore.factorymethod.PizzaStore;
 import pizzastore.factorymethod.argentinianpizza.ArgentinianCheesePizza;
 import pizzastore.factorymethod.argentinianpizza.ArgentinianFugazzettaPizza;
 import pizzastore.factorymethod.argentinianpizza.ArgentinianPizza;
@@ -19,7 +20,7 @@ public class TestFactoryMethod {
     
     @ParameterizedTest
     @MethodSource("factoryMethodPizzaProvider")
-    public void testFactoryMethodPizzaCreation(String type, Class <? extends Pizza> expectedPizzaClass, pizzastore.factorymethod.PizzaStore pizzaStore) {
+    public void testFactoryMethodPizzaCreation(String type, Class <? extends Pizza> expectedPizzaClass, PizzaStore pizzaStore) {
         
         Pizza pizza = pizzaStore.orderPizza(type);
         assert(pizza.getClass().equals(expectedPizzaClass));

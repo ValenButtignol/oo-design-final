@@ -1,6 +1,5 @@
 package pizzastore.abstractfactory;
 
-import pizzastore.abstractfactory.pizza.ChicagoPizzaStore;
 import pizzastore.abstractfactory.pizza.Pizza;
 
 public class Main {
