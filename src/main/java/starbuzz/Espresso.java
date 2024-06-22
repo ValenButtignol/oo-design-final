@@ -7,7 +7,7 @@ public class Espresso extends Beverage {
 		this.size = size;
 	}
   
-	public Double cost() {
-		return 1.99;
+	public Integer cost() {
+		return 199;
 	}
 }

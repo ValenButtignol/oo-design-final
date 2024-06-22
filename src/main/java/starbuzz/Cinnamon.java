@@ -10,7 +10,7 @@ public class Cinnamon extends CondimentDecorator {
         return beverage.getDescription() + ", Cinnamon";
     }
 
-    public Double cost() {
-        return .15 + beverage.cost() ;
+    public Integer cost() {
+        return 15 + beverage.cost() ;
     }    
 }

@@ -7,7 +7,7 @@ public class RedCoffee extends Beverage {
         this.size = size;
     }
 
-    public Double cost() {
-        return 1.8;
+    public Integer cost() {
+        return 18;
     } 
 }

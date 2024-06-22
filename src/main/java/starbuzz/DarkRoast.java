@@ -6,7 +6,7 @@ public class DarkRoast extends Beverage {
 		this.size = size;
 	}
  
-	public Double cost() {
-		return .99;
+	public Integer cost() {
+		return 99;
 	}
 }

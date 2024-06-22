@@ -17,5 +17,5 @@ public abstract class Beverage {
 		this.size = size;
 	}
  
-	public abstract Double cost();
+	public abstract Integer cost();
 }

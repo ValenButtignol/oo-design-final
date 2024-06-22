@@ -6,7 +6,7 @@ public class Decaf extends Beverage {
 		this.size = size;
 	}
  
-	public Double cost() {
-		return 1.05;
+	public Integer cost() {
+		return 105;
 	}
 }

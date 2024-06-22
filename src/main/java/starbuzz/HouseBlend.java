@@ -6,7 +6,7 @@ public class HouseBlend extends Beverage {
 		this.size = size;
 	}
  
-	public Double cost() {
-		return .89;
+	public Integer cost() {
+		return 89;
 	}
 }

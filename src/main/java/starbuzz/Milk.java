@@ -9,14 +9,14 @@ public class Milk extends CondimentDecorator {
 		return beverage.getDescription() + ", Milk";
 	}
 
-	public Double cost() {
-		double cost = beverage.cost();
+	public Integer cost() {
+		Integer cost = beverage.cost();
 		if (beverage.getSize() == CoffeeSize.SMALL) {
-			return .05 + cost;
+			return 5 + cost;
 		} else if (beverage.getSize() == CoffeeSize.MEDIUM) {
-			return .10 + cost;
+			return 10 + cost;
 		} else {
-			return .15 + cost;
+			return 15 + cost;
 		}
 	}
 }
