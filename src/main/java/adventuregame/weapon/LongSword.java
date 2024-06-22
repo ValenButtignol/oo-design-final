@@ -5,13 +5,18 @@ import adventuregame.FightStyle;
 
 public class LongSword extends Weapon {
 
+    private final Integer MAX_GEMS = 1;
+
     public LongSword() {
         damage = Constants.LONG_SWORD_DAMAGE;
         fightStyle = FightStyle.MELEE;
     }
 
-    @Override
     public String toString() {
         return "Long Sword";
+    }
+
+    public Integer getMaxGems() {
+        return MAX_GEMS;
     }
 }

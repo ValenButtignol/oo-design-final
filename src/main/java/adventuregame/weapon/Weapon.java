@@ -14,6 +14,12 @@ public abstract class Weapon {
         return fightStyle;
     }
 
+    public Integer getGems() {
+        return 0;
+    }
+
+    public abstract Integer getMaxGems();
+
     @Override
     public boolean equals(Object otherWeapon) {
         if (this == otherWeapon) {
