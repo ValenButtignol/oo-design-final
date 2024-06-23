@@ -123,4 +123,9 @@ public class TupleAdapter<T> implements List<T> {
     public List<T> subList(int fromIndex, int toIndex) {
         throw new UnsupportedOperationException();
     }
+
+    @Override
+    public String toString() {
+        return tuple.toString();
+    }
 }
