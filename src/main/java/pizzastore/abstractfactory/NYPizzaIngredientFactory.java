@@ -42,5 +42,4 @@ public class NYPizzaIngredientFactory implements PizzaIngredientFactory {
 	public Clams createClam() {
 		return new FreshClams();
 	}
-
 }

@@ -15,9 +15,7 @@ import pizzastore.abstractfactory.veggie.Eggplant;
 import pizzastore.abstractfactory.veggie.Spinach;
 import pizzastore.abstractfactory.veggie.Veggies;
 
-public class ChicagoPizzaIngredientFactory 
-	implements PizzaIngredientFactory 
-{
+public class ChicagoPizzaIngredientFactory implements PizzaIngredientFactory {
 
 	public Dough createDough() {
 		return new ThickCrustDough();
