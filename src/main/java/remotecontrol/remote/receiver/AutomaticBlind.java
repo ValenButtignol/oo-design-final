@@ -2,9 +2,9 @@ package remotecontrol.remote.receiver;
 
 public class AutomaticBlind {
     private String location = "";
-    private final Integer MAX_HEIGHT = 2;
-    private final Integer MEDIUM_HEIGHT = 1;
-    private final Integer MIN_HEIGHT = 0;
+    public static final Integer MAX_HEIGHT = 2;
+    public static final Integer MEDIUM_HEIGHT = 1;
+    public static final Integer MIN_HEIGHT = 0;
     private Integer height;
 
     public AutomaticBlind(String location) {

@@ -31,15 +31,15 @@ public class TestRemote {
         remote.setCommand(1, automaticBlindMediumCommand, automaticBlindDownCommand);
 
         remote.onButtonWasPushed(0);
-        assertEquals(automaticBlind.getHeight(), 2);
+        assertEquals(automaticBlind.getHeight(), AutomaticBlind.MAX_HEIGHT);
         remote.offButtonWasPushed(0);
-        assertEquals(automaticBlind.getHeight(), 0);
+        assertEquals(automaticBlind.getHeight(), AutomaticBlind.MIN_HEIGHT);
 
 
         remote.onButtonWasPushed(1);
-        assertEquals(automaticBlind.getHeight(), 1);
+        assertEquals(automaticBlind.getHeight(), AutomaticBlind.MEDIUM_HEIGHT);
         remote.offButtonWasPushed(1);
-        assertEquals(automaticBlind.getHeight(), 0);
+        assertEquals(automaticBlind.getHeight(), AutomaticBlind.MIN_HEIGHT);
     }
 
     @Test
