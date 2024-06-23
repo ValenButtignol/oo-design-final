@@ -4,16 +4,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import remote.command.AutomaticBlindDownCommand;
-import remote.command.AutomaticBlindMediumCommand;
-import remote.command.AutomaticBlindUpCommand;
-import remote.command.CeilingFanOffCommand;
-import remote.command.CeilingFanOnCommand;
-import remote.command.HottubOffCommand;
-import remote.command.HottubOnCommand;
-import remote.receiver.AutomaticBlind;
-import remote.receiver.CeilingFan;
-import remote.receiver.Hottub;
+import remotecontrol.remote.RemoteControl;
+import remotecontrol.remote.command.AutomaticBlindDownCommand;
+import remotecontrol.remote.command.AutomaticBlindMediumCommand;
+import remotecontrol.remote.command.AutomaticBlindUpCommand;
+import remotecontrol.remote.command.CeilingFanOffCommand;
+import remotecontrol.remote.command.CeilingFanOnCommand;
+import remotecontrol.remote.command.HottubOffCommand;
+import remotecontrol.remote.command.HottubOnCommand;
+import remotecontrol.remote.receiver.AutomaticBlind;
+import remotecontrol.remote.receiver.CeilingFan;
+import remotecontrol.remote.receiver.Hottub;
 
 public class TestRemote {
     
