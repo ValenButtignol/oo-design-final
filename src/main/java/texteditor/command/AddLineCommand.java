@@ -20,9 +20,6 @@ public class AddLineCommand implements Command {
 
     @Override
     public void undo() {
-        String deletedLine = textEditor.deleteLine(pos);
-        if (!deletedLine.equals(line)) {
-            throw new IllegalStateException("Deleted line does not match the added line");
-        }
+        textEditor.deleteLine(pos);
     }
 }

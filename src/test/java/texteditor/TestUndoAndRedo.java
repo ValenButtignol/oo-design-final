@@ -6,7 +6,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import texteditor.command.AddLineCommand;
+import texteditor.command.AddWordCommand;
 import texteditor.command.DeleteLineCommand;
+import texteditor.command.DeleteWordCommand;
 
 public class TestUndoAndRedo {
     
@@ -25,7 +27,6 @@ public class TestUndoAndRedo {
         commandManager.execute(new AddLineCommand(buffer, 4, "a"));
         commandManager.execute(new AddLineCommand(buffer, 5, "test"));
     }
-
 
     @Test
     public void testUndoAndRedoWithAddLines() {
@@ -65,4 +66,52 @@ public class TestUndoAndRedo {
         assert(buffer.getBuffer().equals(List.of("Hello", "World", "This")));
     }
 
+    @Test
+    public void testUndoAndRedoWithAddWords() {
+        
+        commandManager.execute(new AddWordCommand(buffer, 0, 0, "Hi"));
+        commandManager.execute(new AddWordCommand(buffer, 1, 0, "There"));
+        commandManager.execute(new AddWordCommand(buffer, 2, 0, "Everyone"));
+
+        
+        assert(buffer.getBuffer().equals(List.of("Hi Hello", "There World", "Everyone This", "is", "a", "test")));
+
+        commandManager.undo();
+        commandManager.undo();
+        commandManager.undo();
+
+        assert(buffer.getBuffer().equals(List.of("Hello", "World", "This", "is", "a", "test")));
+
+        commandManager.redo();
+        commandManager.redo();
+        commandManager.redo();
+
+        assert(buffer.getBuffer().equals(List.of("Hi Hello", "There World", "Everyone This", "is", "a", "test")));
+    }
+
+    @Test
+    public void testUndoAndRedoWithDeleteWords() {
+            
+            commandManager.execute(new AddWordCommand(buffer, 0, 0, "Hi"));
+            commandManager.execute(new AddWordCommand(buffer, 1, 0, "There"));
+            commandManager.execute(new AddWordCommand(buffer, 2, 0, "Everyone"));
+    
+            commandManager.execute(new DeleteWordCommand(buffer, 0, 0));
+            commandManager.execute(new DeleteWordCommand(buffer, 1, 0));
+            commandManager.execute(new DeleteWordCommand(buffer, 2, 0));
+    
+            assert(buffer.getBuffer().equals(List.of("Hello", "World", "This", "is", "a", "test")));
+    
+            commandManager.undo();
+            commandManager.undo();
+            commandManager.undo();
+    
+            assert(buffer.getBuffer().equals(List.of("Hi Hello", "There World", "Everyone This", "is", "a", "test")));
+    
+            commandManager.redo();
+            commandManager.redo();
+            commandManager.redo();
+    
+            assert(buffer.getBuffer().equals(List.of("Hello", "World", "This", "is", "a", "test")));
+    }
 }
