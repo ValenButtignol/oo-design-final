@@ -12,6 +12,7 @@ public class AutomaticBlindDownCommand implements Command {
     }
 
     public void execute() {
+        prevHeight = automaticBlind.getHeight();
         automaticBlind.minHeight();
     }
 

@@ -11,6 +11,7 @@ public class AutomaticBlindMediumCommand implements Command {
     }
 
     public void execute() {
+        prevHeight = automaticBlind.getHeight();
         automaticBlind.mediumHeight();
     }
 
