@@ -5,6 +5,7 @@ import remotecontrol.remotewithundo.receiver.Light;
 public class LightOffCommand implements Command {
 	Light light;
 	int level;
+	
 	public LightOffCommand(Light light) {
 		this.light = light;
 	}
