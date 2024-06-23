@@ -5,7 +5,7 @@ import java.io.LineNumberInputStream;
 import java.io.StringBufferInputStream;
 
 @SuppressWarnings("deprecation")
-public class InputTest {
+public class Main {
 	public static void main(String[] args) throws IOException {
 		int c;
 		StringBuilder encodedMessage = new StringBuilder();
