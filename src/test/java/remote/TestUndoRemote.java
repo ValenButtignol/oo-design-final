@@ -2,10 +2,12 @@ package remote;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import remotecontrol.remotewithundo.receiver.CeilingFan;
 import remotecontrol.remotewithundo.receiver.Light;
+import remotecontrol.remotewithundo.command.Command;
 import remotecontrol.remotewithundo.RemoteControlWithUndo;
 import remotecontrol.remotewithundo.command.AutomaticBlindDownCommand;
 import remotecontrol.remotewithundo.command.AutomaticBlindMediumCommand;
@@ -13,24 +15,53 @@ import remotecontrol.remotewithundo.command.AutomaticBlindUpCommand;
 import remotecontrol.remotewithundo.command.CeilingFanHighCommand;
 import remotecontrol.remotewithundo.command.CeilingFanLowCommand;
 import remotecontrol.remotewithundo.command.CeilingFanMediumCommand;
+import remotecontrol.remotewithundo.command.CeilingFanOffCommand;
 import remotecontrol.remotewithundo.command.DimmerLightOffCommand;
 import remotecontrol.remotewithundo.command.DimmerLightOnCommand;
+import remotecontrol.remotewithundo.command.MacroCommand;
 import remotecontrol.remotewithundo.receiver.AutomaticBlind;
 
 
 public class TestUndoRemote {
-    
-    @Test
-    public void testAutomaticBlindsWithUndo() {
-        RemoteControlWithUndo remoteControlWithUndo = new RemoteControlWithUndo();
+    private RemoteControlWithUndo remoteControlWithUndo;
+    private AutomaticBlind automaticBlind;
+    private CeilingFan ceilingFan;
+    private Light light;
 
-        AutomaticBlind automaticBlind = new AutomaticBlind("living room");
-        AutomaticBlindDownCommand automaticBlindDownCommand = new AutomaticBlindDownCommand(automaticBlind);
-        AutomaticBlindUpCommand automaticBlindUpCommand = new AutomaticBlindUpCommand(automaticBlind);
-        AutomaticBlindMediumCommand automaticBlindMediumCommand = new AutomaticBlindMediumCommand(automaticBlind);
+    @BeforeEach
+    public void setUp() {
+        remoteControlWithUndo = new RemoteControlWithUndo();
+        automaticBlind = new AutomaticBlind("living room");
+
+        Command automaticBlindDownCommand = new AutomaticBlindDownCommand(automaticBlind);
+        Command automaticBlindUpCommand = new AutomaticBlindUpCommand(automaticBlind);
+        Command automaticBlindMediumCommand = new AutomaticBlindMediumCommand(automaticBlind);
+
+        ceilingFan = new CeilingFan("living room");
+        Command ceilingFanHighCommand = new CeilingFanHighCommand(ceilingFan);
+        Command ceilingFanLowCommand = new CeilingFanLowCommand(ceilingFan);
+        Command ceilingFanMediumCommand = new CeilingFanMediumCommand(ceilingFan);
+        Command ceilingFanOffCommand = new CeilingFanOffCommand(ceilingFan);
+
+        light = new Light("bathroom");
+        Command dimmerLightOffCommand = new DimmerLightOffCommand(light);
+        Command dimmerLightOnCommand = new DimmerLightOnCommand(light);
+
+        Command[] partyOn = {automaticBlindUpCommand, ceilingFanHighCommand, dimmerLightOnCommand};
+        Command[] partyOff = {automaticBlindDownCommand, ceilingFanOffCommand, dimmerLightOffCommand};
+        MacroCommand partyOnCommand = new MacroCommand(partyOn);
+        MacroCommand partyOffCommand = new MacroCommand(partyOff);
 
         remoteControlWithUndo.setCommand(0, automaticBlindUpCommand, automaticBlindDownCommand);
         remoteControlWithUndo.setCommand(1, automaticBlindMediumCommand, automaticBlindDownCommand);
+        remoteControlWithUndo.setCommand(2, ceilingFanHighCommand, ceilingFanOffCommand);
+        remoteControlWithUndo.setCommand(3, ceilingFanMediumCommand, ceilingFanOffCommand);
+        remoteControlWithUndo.setCommand(4, dimmerLightOnCommand, dimmerLightOffCommand);
+        remoteControlWithUndo.setCommand(5, partyOnCommand, partyOffCommand);
+    }
+    
+    @Test
+    public void testAutomaticBlindsWithUndo() {
 
         remoteControlWithUndo.onButtonWasPushed(0);
         assertEquals(automaticBlind.getHeight(), AutomaticBlind.MAX_HEIGHT);
@@ -45,34 +76,34 @@ public class TestUndoRemote {
 
     @Test
     public void testDimmerLightAndCeilingFanWithUndo() {
-        RemoteControlWithUndo remoteControlWithUndo = new RemoteControlWithUndo();
 
-        CeilingFan ceilingFan = new CeilingFan("living room");
-        CeilingFanHighCommand ceilingFanHighCommand = new CeilingFanHighCommand(ceilingFan);
-        CeilingFanLowCommand ceilingFanLowCommand = new CeilingFanLowCommand(ceilingFan);
-        CeilingFanMediumCommand ceilingFanMediumCommand = new CeilingFanMediumCommand(ceilingFan);
-
-        Light light = new Light("bathroom");
-        DimmerLightOffCommand dimmerLightOffCommand = new DimmerLightOffCommand(light);
-        DimmerLightOnCommand dimmerLightOnCommand = new DimmerLightOnCommand(light);
-
-        remoteControlWithUndo.setCommand(0, ceilingFanHighCommand, ceilingFanLowCommand);
-        remoteControlWithUndo.setCommand(1, ceilingFanMediumCommand, ceilingFanLowCommand);
-        remoteControlWithUndo.setCommand(2, dimmerLightOnCommand, dimmerLightOffCommand);
-
-        remoteControlWithUndo.onButtonWasPushed(0);
+        remoteControlWithUndo.onButtonWasPushed(2);
         assertEquals(ceilingFan.getSpeed(), CeilingFan.HIGH);
         remoteControlWithUndo.undoButtonWasPushed();
         assertEquals(ceilingFan.getSpeed(), CeilingFan.OFF);
-        remoteControlWithUndo.onButtonWasPushed(1);
-        remoteControlWithUndo.onButtonWasPushed(0);
+        remoteControlWithUndo.onButtonWasPushed(3);
+        remoteControlWithUndo.onButtonWasPushed(2);
         remoteControlWithUndo.undoButtonWasPushed();
         assertEquals(ceilingFan.getSpeed(), CeilingFan.MEDIUM);
 
-        remoteControlWithUndo.onButtonWasPushed(2);
-        remoteControlWithUndo.offButtonWasPushed(2);
+        remoteControlWithUndo.onButtonWasPushed(4);
+        remoteControlWithUndo.offButtonWasPushed(4);
         remoteControlWithUndo.undoButtonWasPushed();
         assertEquals(light.getLevel(), 75);
 
+    }
+
+    @Test
+    public void testMacroCommand() {
+
+        remoteControlWithUndo.onButtonWasPushed(5);
+        assertEquals(automaticBlind.getHeight(), AutomaticBlind.MAX_HEIGHT);
+        assertEquals(ceilingFan.getSpeed(), CeilingFan.HIGH);
+        assertEquals(light.getLevel(), 75);
+
+        remoteControlWithUndo.undoButtonWasPushed();
+        assertEquals(automaticBlind.getHeight(), AutomaticBlind.MIN_HEIGHT);
+        assertEquals(ceilingFan.getSpeed(), CeilingFan.OFF);
+        assertEquals(light.getLevel(), 0);
     }
 }
