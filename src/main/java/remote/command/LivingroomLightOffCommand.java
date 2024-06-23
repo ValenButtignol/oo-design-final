@@ -1,4 +1,6 @@
-package remote;
+package remote.command;
+
+import remote.receiver.Light;
 
 public class LivingroomLightOffCommand implements Command {
 	Light light;

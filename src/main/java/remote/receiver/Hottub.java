@@ -1,4 +1,4 @@
-package remote;
+package remote.receiver;
 
 public class Hottub {
 	boolean on;
@@ -53,4 +53,7 @@ public class Hottub {
 		System.out.println("Hottub is cooling to 98 degrees");
 	}
 
+	public int getTemperature() {
+		return temperature;
+	}
 }

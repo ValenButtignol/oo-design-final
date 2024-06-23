@@ -1,5 +1,18 @@
 package remote;
 
+import remote.command.CeilingFanOffCommand;
+import remote.command.CeilingFanOnCommand;
+import remote.command.GarageDoorDownCommand;
+import remote.command.GarageDoorUpCommand;
+import remote.command.LightOffCommand;
+import remote.command.LightOnCommand;
+import remote.command.StereoOffCommand;
+import remote.command.StereoOnWithCDCommand;
+import remote.receiver.CeilingFan;
+import remote.receiver.GarageDoor;
+import remote.receiver.Light;
+import remote.receiver.Stereo;
+
 public class Main {
  
 	public static void main(String[] args) {

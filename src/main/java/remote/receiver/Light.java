@@ -1,4 +1,4 @@
-package remote;
+package remote.receiver;
 
 public class Light {
 	String location = "";

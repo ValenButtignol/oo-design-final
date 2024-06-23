@@ -1,4 +1,6 @@
-package remote;
+package remote.command;
+
+import remote.receiver.GarageDoor;
 
 public class GarageDoorDownCommand implements Command {
 	GarageDoor garageDoor;

@@ -1,5 +1,8 @@
 package remote;
 
+import remote.command.Command;
+import remote.command.NoCommand;
+
 //
 // This is the invoker
 //

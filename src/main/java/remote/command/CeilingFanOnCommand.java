@@ -1,4 +1,6 @@
-package remote;
+package remote.command;
+
+import remote.receiver.CeilingFan;
 
 public class CeilingFanOnCommand implements Command {
 	CeilingFan ceilingFan;

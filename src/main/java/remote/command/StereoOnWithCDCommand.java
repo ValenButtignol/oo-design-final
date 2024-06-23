@@ -1,4 +1,6 @@
-package remote;
+package remote.command;
+
+import remote.receiver.Stereo;
 
 public class StereoOnWithCDCommand implements Command {
 	Stereo stereo;

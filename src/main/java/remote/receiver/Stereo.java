@@ -1,4 +1,4 @@
-package remote;
+package remote.receiver;
 
 public class Stereo {
 	String location;
