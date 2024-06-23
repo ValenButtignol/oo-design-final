@@ -14,7 +14,6 @@ import remotecontrol.remote.receiver.Light;
 import remotecontrol.remote.receiver.Stereo;
 
 public class Main {
- 
 	public static void main(String[] args) {
 		RemoteControl remoteControl = new RemoteControl();
  
