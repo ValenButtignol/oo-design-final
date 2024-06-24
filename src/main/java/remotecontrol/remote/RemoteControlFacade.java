@@ -61,5 +61,4 @@ public class RemoteControlFacade {
         remoteControl.offButtonWasPushed(2);    //Turn off the stereo
         remoteControl.offButtonWasPushed(3);    //Turn off the hottub
     }
-
 }
