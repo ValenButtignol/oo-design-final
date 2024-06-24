@@ -24,7 +24,7 @@ public class PrimeNumberSystemTests {
         
         PrimeNumberSystem primeNumberSystem = new PrimeNumberSystem(primeNumberGenerator, outputManager);
         List<Integer> primeNumbers = primeNumberSystem.printFirstNPrimeNumbers(number);
-        assertThat(primeNumbers.toString()).isEqualTo(expectedResult);
+        assertThat(outputManager.getPrintInput()).isEqualTo(expectedResult);
     }
 
     public static Collection<Object[]> PrimeNumberGeneratorProvider() {
