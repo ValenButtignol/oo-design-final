@@ -8,7 +8,7 @@ public abstract class Pizza {
 	protected String sauce;
 	protected ArrayList<String> toppings = new ArrayList<String>();
  
-	protected void prepare() {
+	public void prepare() {
 		System.out.println("Prepare " + name);
 		System.out.println("Tossing dough...");
 		System.out.println("Adding sauce...");
@@ -18,15 +18,15 @@ public abstract class Pizza {
 		}
 	}
   
-	void bake() {
+	public void bake() {
 		System.out.println("Bake for 25 minutes at 350");
 	}
  
-	protected void cut() {
+	public void cut() {
 		System.out.println("Cut the pizza into diagonal slices");
 	}
   
-	void box() {
+	public void box() {
 		System.out.println("Place pizza in official PizzaStore box");
 	}
  
