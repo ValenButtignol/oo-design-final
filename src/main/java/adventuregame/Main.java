@@ -1,16 +1,26 @@
 package adventuregame;
 
+import java.util.List;
+
 import adventuregame.character.AdventureCharacter;
+import adventuregame.character.Dwarf;
+import adventuregame.character.Troll;
 import adventuregame.displays.DisplayElement;
 import adventuregame.displays.TerminalDisplayElement;
 import adventuregame.factory.HumanVersionFactory;
+import adventuregame.factory.MonsterVersionFactory;
 import adventuregame.factory.CharactersAndWeaponFactory;
 import adventuregame.observer.StatsObserver;
+import adventuregame.weapon.Axe;
+import adventuregame.weapon.Hammer;
 import adventuregame.weapon.Weapon;
+import adventuregame.weapon.gem.AmethystGem;
+import adventuregame.weapon.gem.SapphireGem;
+import adventuregame.weapon.gem.TopazGem;
 
 public class Main {
     public static void main(String[] args) {
-        CharactersAndWeaponFactory factory = new HumanVersionFactory();
+        CharactersAndWeaponFactory factory = new MonsterVersionFactory();
         
         Weapon staff = factory.createWeapon("staff");
         AdventureCharacter c1 = factory.createCharacter("wizard", staff);

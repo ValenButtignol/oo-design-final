@@ -199,11 +199,11 @@ public class TestBattleArena {
             } else if (gem == GreenGem.class) {
                 weapon = new GreenGem(weapon);
             } else if (gem == SapphireGem.class) {
-                return new SapphireGem(weapon);
+                weapon = new SapphireGem(weapon);
             } else if (gem == TopazGem.class) {
-                return new TopazGem(weapon);
+                weapon = new TopazGem(weapon);
             } else {
-                return new AmethystGem(weapon);
+                weapon =  new AmethystGem(weapon);
             }
         }
         return weapon;

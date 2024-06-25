@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import remotecontrol.remotewithundo.RemoteControlWithUndo;
 import remotecontrol.remotewithundo.RemoteControlWithUndoAndRedo;
 import remotecontrol.remotewithundo.command.AutomaticBlindDownCommand;
 import remotecontrol.remotewithundo.command.AutomaticBlindMediumCommand;
