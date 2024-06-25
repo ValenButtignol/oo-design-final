@@ -30,7 +30,7 @@ public class AttackObserver implements Observer {
     }
 
     @Override
-    public void updateWinner(AdventureCharacter winner, AdventureCharacter loser) {
+    public void updateWinner(AdventureCharacter winner) {
     }
 
     private void sendDisplayMessage() {
@@ -40,5 +40,9 @@ public class AttackObserver implements Observer {
             " with " + weapon1.toString() + "!");
         displayElement.display("- " + attacker.toString() + " deals " + weapon1.getDamage() + " damage");
         displayElement.display("- " + target.toString() + " has " + target.getHp() + " health left!");
+
+        if (target.getHp() <= 0) {
+            displayElement.display(target.toString() + " has been defeated!");
+        }
     }
 }

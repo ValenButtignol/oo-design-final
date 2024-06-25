@@ -8,7 +8,6 @@ public class BattleEndObserver implements Observer {
  
     private Subject battleArena;
     private AdventureCharacter winner;
-    private AdventureCharacter loser;
     private DisplayElement displayElement;
 
     public BattleEndObserver(Subject battleArena, DisplayElement displayElement) {
@@ -26,14 +25,12 @@ public class BattleEndObserver implements Observer {
     }
 
     @Override
-    public void updateWinner(AdventureCharacter winner, AdventureCharacter loser) {
+    public void updateWinner(AdventureCharacter winner) {
         this.winner = winner;
-        this.loser = loser;
         sendDisplayMessage();
     }
 
     private void sendDisplayMessage() {
-        displayElement.display(loser.toString() + " has been defeated!");
         displayElement.display(winner.toString() + " Winner Winner Chicken Dinner!");
     }
 }

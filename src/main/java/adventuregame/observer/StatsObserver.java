@@ -9,7 +9,6 @@ import adventuregame.displays.DisplayElement;
 public class StatsObserver implements Observer {
 
     private Subject battleArena;
-    private AdventureCharacter character1;
     private DisplayElement displayElement;
     private HashMap<AdventureCharacter, Integer> winsCount;
 
@@ -29,7 +28,7 @@ public class StatsObserver implements Observer {
     }
 
     @Override
-    public void updateWinner(AdventureCharacter winner, AdventureCharacter loser) {
+    public void updateWinner(AdventureCharacter winner) {
         if (winsCount.containsKey(winner)) {
             winsCount.put(winner, winsCount.get(winner) + 1);
         } else {

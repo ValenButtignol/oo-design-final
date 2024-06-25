@@ -4,11 +4,11 @@ import adventuregame.Constants;
 import adventuregame.FightStyle;
 import adventuregame.weapon.Weapon;
 
-public class RedGem extends GemDecorator {
-    
-    public RedGem(Weapon weapon) {
+public class SapphireGem extends GemDecorator {
+        
+    public SapphireGem(Weapon weapon) {
         super(weapon);
-        this.damage = Constants.RED_GEM_DAMAGE + weapon.getDamage();
+        this.damage = Constants.SAPPHIRE_GEM_DAMAGE + weapon.getDamage();
         this.fightStyle = weapon.getFightStyle();
     }
 
@@ -25,6 +25,6 @@ public class RedGem extends GemDecorator {
     }
 
     public String toString() {
-        return weapon.toString() + " Red Gem";
+        return weapon.toString() + " Sapphire Gem";
     }
-}   
+}

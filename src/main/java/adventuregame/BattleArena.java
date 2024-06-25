@@ -10,7 +10,6 @@ public class BattleArena implements Subject {
     private AdventureCharacter character1;
     private AdventureCharacter character2;
     private AdventureCharacter winner;
-    private AdventureCharacter loser;
     private boolean isCharacter1Turn;
     private List<Observer> observers;
 
@@ -37,7 +36,8 @@ public class BattleArena implements Subject {
         }
 
         setWinner();
-        notifyEnd(winner, loser);
+        resetTurn();
+        notifyEnd(winner);
     }
 
     public void attack() {
@@ -76,9 +76,9 @@ public class BattleArena implements Subject {
     }
 
     @Override
-    public void notifyEnd(AdventureCharacter winner, AdventureCharacter loser) {
+    public void notifyEnd(AdventureCharacter winner) {
         for (Observer observer : observers) {
-            observer.updateWinner(winner, loser);
+            observer.updateWinner(winner);
         }
     }
 
@@ -87,12 +87,13 @@ public class BattleArena implements Subject {
     }
 
     private void setWinner() {
-        if (character1.isAlive()) {
+        if (character1.isAlive()) 
             winner = character1;
-            loser = character2;
-        } else {
+        else 
             winner = character2;
-            loser = character1;
-        }
+    }
+
+    private void resetTurn() {
+        isCharacter1Turn = true;
     }
 }

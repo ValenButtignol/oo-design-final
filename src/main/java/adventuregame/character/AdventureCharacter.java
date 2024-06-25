@@ -14,7 +14,7 @@ public abstract class AdventureCharacter {
     }
 
     public void setWeapon(Weapon weapon) {
-        if (weapon.getFightStyle() != fightStyle)
+        if (weapon.getFightStyle() != fightStyle && weapon.getFightStyle() != FightStyle.DEFAULT)
             throw new IllegalArgumentException("Weapon's fight style not compatible");
         this.weapon = weapon;
     }

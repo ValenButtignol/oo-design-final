@@ -30,7 +30,7 @@ public class BattleStartObserver implements Observer {
     }
 
     @Override
-    public void updateWinner(AdventureCharacter winner, AdventureCharacter loser) {
+    public void updateWinner(AdventureCharacter winner) {
     }
 
     private void sendDisplayMessage() {

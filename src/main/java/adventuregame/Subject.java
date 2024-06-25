@@ -8,5 +8,5 @@ public interface Subject {
     public void removeObserver(Observer observer);
     public void notifyStart(AdventureCharacter character1, AdventureCharacter character2);
     public void notifyAttack(AdventureCharacter attacker, AdventureCharacter target);
-    public void notifyEnd(AdventureCharacter winner, AdventureCharacter loser);
+    public void notifyEnd(AdventureCharacter winner);
 }
