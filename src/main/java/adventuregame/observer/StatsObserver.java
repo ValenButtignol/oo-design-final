@@ -20,12 +20,10 @@ public class StatsObserver implements Observer {
     }
 
     @Override
-    public void updateAttack(AdventureCharacter attacker, AdventureCharacter target) {
-    }
+    public void updateAttack(AdventureCharacter attacker, AdventureCharacter target) { }
 
     @Override
-    public void updateStart(AdventureCharacter character1, AdventureCharacter character2) {
-    }
+    public void updateStart(AdventureCharacter character1, AdventureCharacter character2) { }
 
     @Override
     public void updateWinner(AdventureCharacter winner) {
@@ -40,8 +38,7 @@ public class StatsObserver implements Observer {
     private void sendDisplayMessage() {
         displayElement.display("Wins count:");
         for (AdventureCharacter character : winsCount.keySet()) {
-            displayElement.display(character.toString() + "\t" + character.getWeapon().toString() + "\t: " + winsCount.get(character));
+            displayElement.display(character.toString() + " with " + character.getWeapon().toString() + ": " + winsCount.get(character));
         }
     }
-
 }

@@ -13,6 +13,7 @@ public class BattleArena implements Subject {
     private boolean isCharacter1Turn;
     private List<Observer> observers;
 
+    
     public BattleArena(AdventureCharacter character1, AdventureCharacter character2) {
         this.character1 = character1;
         this.character2 = character2;

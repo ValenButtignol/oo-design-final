@@ -17,6 +17,10 @@ public class MockDisplayElement extends DisplayElement {
         displayList.add(str);
     }
 
+    public void clearDisplayList() {
+        displayList.clear();
+    }
+
     public List<String> getDisplayList() {
         return displayList;
     }

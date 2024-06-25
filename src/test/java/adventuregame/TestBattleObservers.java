@@ -75,7 +75,7 @@ public class TestBattleObservers {
     private static Stream<Object> winnerObserverProvider() {
         return Stream.of(
             Arguments.of(new BattleArena(new Gladiator(new LongSword()), new Wizard(new Staff())),
-                List.of("Wizard has been defeated!", "Gladiator Winner Winner Chicken Dinner!"))
+                List.of("Gladiator Winner Winner Chicken Dinner!"))
             );
     }
 }

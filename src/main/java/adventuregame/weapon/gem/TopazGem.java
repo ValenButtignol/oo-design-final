@@ -25,6 +25,6 @@ public class TopazGem extends GemDecorator {
     }
 
     public String toString() {
-        return weapon.toString() + " Topaz Gem";
+        return weapon.toString() + ", Topaz Gem";
     }
 }

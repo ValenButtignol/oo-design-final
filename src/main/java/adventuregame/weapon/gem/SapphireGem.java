@@ -25,6 +25,6 @@ public class SapphireGem extends GemDecorator {
     }
 
     public String toString() {
-        return weapon.toString() + " Sapphire Gem";
+        return weapon.toString() + ", Sapphire Gem";
     }
 }

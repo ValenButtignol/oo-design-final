@@ -28,6 +28,6 @@ public class AmethystGem extends GemDecorator {
     }
         
     public String toString() {
-        return weapon.toString() + " Amethyst Gem";
+        return weapon.toString() + ", Amethyst Gem";
     }   
 }

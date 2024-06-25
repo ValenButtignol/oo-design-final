@@ -25,6 +25,6 @@ public class GreenGem extends GemDecorator {
     }
 
     public String toString() {
-        return weapon.toString() + " Green Gem";
+        return weapon.toString() + ", Green Gem";
     }
 }
