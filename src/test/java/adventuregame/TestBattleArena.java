@@ -11,18 +11,28 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import adventuregame.character.AdventureCharacter;
+import adventuregame.character.Dwarf;
 import adventuregame.character.Gladiator;
 import adventuregame.character.Knight;
+import adventuregame.character.Orc;
+import adventuregame.character.Troll;
 import adventuregame.character.Wizard;
+import adventuregame.weapon.Axe;
+import adventuregame.weapon.BareFist;
+import adventuregame.weapon.Bow;
+import adventuregame.weapon.Hammer;
 import adventuregame.weapon.LongSword;
 import adventuregame.weapon.ShortSword;
 import adventuregame.weapon.Staff;
 import adventuregame.weapon.Wand;
 import adventuregame.weapon.Weapon;
+import adventuregame.weapon.gem.AmethystGem;
 import adventuregame.weapon.gem.BlueGem;
 import adventuregame.weapon.gem.GemDecorator;
 import adventuregame.weapon.gem.GreenGem;
 import adventuregame.weapon.gem.RedGem;
+import adventuregame.weapon.gem.SapphireGem;
+import adventuregame.weapon.gem.TopazGem;
 
 public class TestBattleArena {
     
@@ -40,7 +50,10 @@ public class TestBattleArena {
         return Stream.of(
             Arguments.of(new Gladiator(), new ShortSword(), new LongSword()),
             Arguments.of(new Knight(), new LongSword(), new ShortSword()),
-            Arguments.of(new Wizard(), new Wand(), new Staff())
+            Arguments.of(new Wizard(), new Wand(), new Staff()),
+            Arguments.of(new Orc(), new BareFist(), new Bow()),
+            Arguments.of(new Dwarf(), new Axe(), new Hammer()),
+            Arguments.of(new Troll(), new Hammer(), new Axe())
         );
     }
 
@@ -56,9 +69,12 @@ public class TestBattleArena {
 
     private static Stream<Object> weaponsChangeProviderWithCreatedCharacters() {
         return Stream.of(
-            Arguments.of(new Gladiator( new ShortSword()), new LongSword()),
+            Arguments.of(new Gladiator(new ShortSword()), new LongSword()),
             Arguments.of(new Knight(new LongSword()), new ShortSword()),
-            Arguments.of(new Wizard( new Wand()), new Staff())
+            Arguments.of(new Wizard(new Wand()), new Staff()),
+            Arguments.of(new Dwarf(new Axe()), new Hammer()),
+            Arguments.of(new Orc(new Bow()), new BareFist()),
+            Arguments.of(new Troll(new Hammer()), new Axe())
         );
     }
 
@@ -74,7 +90,10 @@ public class TestBattleArena {
         return Stream.of(
             Arguments.of(new Gladiator(new ShortSword()), new Wizard(new Wand())),
             Arguments.of(new Knight(new LongSword()), new Gladiator(new ShortSword())),
-            Arguments.of(new Wizard(new Staff()), new Knight(new LongSword()))
+            Arguments.of(new Wizard(new Staff()), new Knight(new LongSword()),
+            Arguments.of(new Dwarf(new Axe()), new Orc()),
+            Arguments.of(new Troll(), new Dwarf()),
+            Arguments.of(new Orc(new Bow()), new Orc()))
         );
     }
 
@@ -102,7 +121,9 @@ public class TestBattleArena {
         return Stream.of(
             Arguments.of(new Gladiator(), new LongSword(), List.of(RedGem.class), new Wizard(), new Wand(), List.of(GreenGem.class)),
             Arguments.of(new Wizard(), new Staff(), List.of(GreenGem.class, RedGem.class), new Knight(), new ShortSword(), List.of(GreenGem.class, BlueGem.class)),
-            Arguments.of(new Knight(), new ShortSword(), List.of(RedGem.class, BlueGem.class, GreenGem.class, BlueGem.class), new Wizard(), new Staff(), List.of(RedGem.class))
+            Arguments.of(new Knight(), new ShortSword(), List.of(RedGem.class, BlueGem.class, GreenGem.class, BlueGem.class), new Wizard(), new Staff(), List.of(RedGem.class)),
+            Arguments.of(new Troll(), new Hammer(), List.of(SapphireGem.class, TopazGem.class), new Dwarf(), new Axe(), List.of(AmethystGem.class)),
+            Arguments.of(new Orc(), new Bow(), List.of(TopazGem.class), new Orc(), new Bow(), List.of(SapphireGem.class, AmethystGem.class))
         );
     }
 
@@ -122,7 +143,11 @@ public class TestBattleArena {
             Arguments.of(new Knight(), new Staff()),
             Arguments.of(new Knight(), new Wand()),
             Arguments.of(new Wizard(), new ShortSword()),
-            Arguments.of(new Wizard(), new LongSword())
+            Arguments.of(new Wizard(), new LongSword()),
+            Arguments.of(new Dwarf(), new Bow()),
+            Arguments.of(new Troll(), new Wand()),
+            Arguments.of(new Orc(), new LongSword()),
+            Arguments.of(new Wizard(), new Axe())
         );
     }
 
@@ -142,7 +167,10 @@ public class TestBattleArena {
             Arguments.of(Knight.class, new Staff()),
             Arguments.of(Knight.class, new Wand()),
             Arguments.of(Wizard.class, new ShortSword()),
-            Arguments.of(Wizard.class, new LongSword())
+            Arguments.of(Wizard.class, new LongSword()),
+            Arguments.of(Dwarf.class, new Staff()),
+            Arguments.of(Orc.class, new Wand()),
+            Arguments.of(Troll.class, new Bow())
         );
     }
 
@@ -151,9 +179,15 @@ public class TestBattleArena {
             return new Gladiator(weapon);
         } else if (characterClass == Knight.class) {
             return new Knight(weapon);
-        } else {
+        } else if (characterClass == Wizard.class) {
             return new Wizard(weapon);
-        } 
+        } if (characterClass == Troll.class) { 
+            return new Troll(weapon);
+        } if (characterClass == Orc.class) {
+            return new Orc(weapon);
+        } else {
+            return new Dwarf(weapon);
+        }
     }
 
     private static Weapon createWeaponWithGem(List<Class <? extends GemDecorator>> gems, Weapon weapon) {
@@ -162,9 +196,15 @@ public class TestBattleArena {
                 weapon = new RedGem(weapon);
             } else if (gem == BlueGem.class) {
                 weapon =  new BlueGem(weapon);
-            } else {
+            } else if (gem == GreenGem.class) {
                 weapon = new GreenGem(weapon);
-            } 
+            } else if (gem == SapphireGem.class) {
+                return new SapphireGem(weapon);
+            } else if (gem == TopazGem.class) {
+                return new TopazGem(weapon);
+            } else {
+                return new AmethystGem(weapon);
+            }
         }
         return weapon;
     }
