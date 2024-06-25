@@ -66,8 +66,8 @@ public class HumanVersionFactory implements CharactersAndWeaponFactory {
             return new BlueGem(weapon);
         } else if (gemType.equals("green")) {
             return new GreenGem(weapon);
+        } else {
+            throw new IllegalArgumentException("Invalid gem type");
         }
-
-        return weapon;
     }
 }

@@ -64,8 +64,8 @@ public class MonsterVersionFactory implements CharactersAndWeaponFactory {
             return new TopazGem(weapon);
         } else if (gemType.equals("sapphire")) {
             return new SapphireGem(weapon);
+        } else {
+            throw new IllegalArgumentException("Invalid gem type");
         }
-
-        return weapon;
     }
 }

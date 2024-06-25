@@ -36,7 +36,6 @@ public class TestStatsObserver {
         MockDisplayElement displayElement = new MockDisplayElement();
         StatsObserver battleStartObserver = new StatsObserver(battleArena, displayElement);
         battleArena.fight();
-        System.out.println(displayElement.getDisplayList());
         assert(displayElement.getDisplayList().equals(expectedDisplayList));
     }
 
@@ -58,13 +57,11 @@ public class TestStatsObserver {
             StatsObserver battleStartObserver = new StatsObserver(battleArena, displayElement);
 
             battleArena.fight();
-            System.out.println(displayElement.getDisplayList());
             assert(displayElement.getDisplayList().equals(firstExpectedDisplay));
 
             battleArena.setCharacters(c3, c4);
             displayElement.clearDisplayList();
             battleArena.fight();
-            System.out.println(displayElement.getDisplayList());
             assert(displayElement.getDisplayList().equals(secondExpectedDisplay));
     }
 
