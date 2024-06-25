@@ -6,8 +6,8 @@ import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import adapter.list.ImmutableArrayTuple;
 import adapter.list.ImmutableTuple;
-import adapter.list.Tuple;
 import adapter.list.TupleAdapter;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,12 +15,12 @@ import java.util.List;
 
 
 public class TupleAdapterTest {
-    private Tuple<Integer> tuple;
+    private ImmutableTuple<Integer> tuple;
     private static List<Integer> adapter;
 
     @BeforeEach
     public void setUp() {
-        tuple = new ImmutableTuple<>(1, 2, 3);
+        tuple = new ImmutableArrayTuple<>(1, 2, 3);
         adapter = new TupleAdapter<>(tuple);
     }
 
@@ -65,11 +65,28 @@ public class TupleAdapterTest {
         assertFalse(adapter.containsAll(List.of(1, 4)));
     }
 
+    @Test
+    public void testToArray() {
+        assertArrayEquals(new Integer[]{1, 2, 3}, adapter.toArray());
+    }
+
+    @Test
+    public void testToArrayWithParameter() {
+        Integer[] array = new Integer[3];
+        assertArrayEquals(new Integer[]{1, 2, 3}, adapter.toArray(array));
+    }
+
+    @Test
+    public void testSubTuple() {
+        List<Integer> subTuple = adapter.subList(1, 3);
+        assertEquals(2, subTuple.size());
+        assertEquals(2, subTuple.get(0));
+        assertEquals(3, subTuple.get(1));
+    }
+
     private static List<Executable> unsupportedMethodsProvider() {
         return List.of(
                 () -> adapter.iterator(),
-                () -> adapter.toArray(),
-                () -> adapter.toArray(new Integer[0]),
                 () -> adapter.add(4),
                 () -> adapter.remove(Integer.valueOf(2)),
                 () -> adapter.addAll(List.of(4, 5)),
@@ -81,8 +98,7 @@ public class TupleAdapterTest {
                 () -> adapter.add(0, 5),
                 () -> adapter.remove(0),
                 () -> adapter.listIterator(),
-                () -> adapter.listIterator(1),
-                () -> adapter.subList(0, 2)
+                () -> adapter.listIterator(1)
         );
     }
 

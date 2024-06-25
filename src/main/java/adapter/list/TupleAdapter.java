@@ -5,16 +5,14 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class TupleAdapter<T> implements List<T> {
-    Tuple<T> tuple;
 
-    public TupleAdapter(Tuple<T> tuple) {
+    private ImmutableTuple<T> tuple;
+
+    public TupleAdapter(ImmutableTuple<T> tuple) {
         this.tuple = tuple;
     }
 
-    public T get(int index) {
-        return tuple.get(index);
-    }
-
+    @Override
     public int size() {
         return tuple.size();
     }
@@ -31,27 +29,27 @@ public class TupleAdapter<T> implements List<T> {
 
     @Override
     public Iterator<T> iterator() {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("Immutable Tuple does not support iterator method");
     }
 
     @Override
     public Object[] toArray() {
-       throw new UnsupportedOperationException();
+        return tuple.toArray();
     }
 
     @Override
-    public <T> T[] toArray(T[] a) {
-        throw new UnsupportedOperationException();
+    public <E> E[] toArray(E[] a) {
+        return tuple.toArray(a);
     }
 
     @Override
     public boolean add(T e) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("Immutable Tuple does not support add method");
     }
 
     @Override
     public boolean remove(Object o) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("Immutable Tuple does not support remove method");
     }
 
     @Override
@@ -61,42 +59,47 @@ public class TupleAdapter<T> implements List<T> {
 
     @Override
     public boolean addAll(Collection<? extends T> c) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("Immutable Tuple does not support addAll method");
     }
 
     @Override
     public boolean addAll(int index, Collection<? extends T> c) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("Immutable Tuple does not support addAll method");
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("Immutable Tuple does not support removeAll method");
     }
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("Immutable Tuple does not support retainAll method");
     }
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("Immutable Tuple does not support clear method");
+    }
+
+    @Override
+    public T get(int index) {
+        return tuple.get(index);
     }
 
     @Override
     public T set(int index, T element) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("Immutable Tuple does not support set method");
     }
 
     @Override
     public void add(int index, T element) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("Immutable Tuple does not support add method");
     }
 
     @Override
     public T remove(int index) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("Immutable Tuple does not support remove method");
     }
 
     @Override
@@ -111,17 +114,21 @@ public class TupleAdapter<T> implements List<T> {
 
     @Override
     public ListIterator<T> listIterator() {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("Immutable Tuple does not support listIterator method");
     }
 
     @Override
     public ListIterator<T> listIterator(int index) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("Immutable Tuple does not support listIterator method");
     }
 
     @Override
     public List<T> subList(int fromIndex, int toIndex) {
-        throw new UnsupportedOperationException();
+        if (fromIndex < 0 || toIndex > tuple.size() || fromIndex > toIndex) {
+            throw new IndexOutOfBoundsException("FromIndex: " + fromIndex + ", ToIndex: " + toIndex + ", Size: " + tuple.size());
+        }
+        ImmutableTuple<T> subTuple = tuple.subTuple(fromIndex, toIndex);
+        return new TupleAdapter<>(subTuple);
     }
 
     @Override
