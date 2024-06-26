@@ -1,4 +1,4 @@
-package remote;
+package remotecontrol;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -13,14 +13,12 @@ import remotecontrol.remotewithundo.command.AutomaticBlindDownCommand;
 import remotecontrol.remotewithundo.command.AutomaticBlindMediumCommand;
 import remotecontrol.remotewithundo.command.AutomaticBlindUpCommand;
 import remotecontrol.remotewithundo.command.CeilingFanHighCommand;
-import remotecontrol.remotewithundo.command.CeilingFanLowCommand;
 import remotecontrol.remotewithundo.command.CeilingFanMediumCommand;
 import remotecontrol.remotewithundo.command.CeilingFanOffCommand;
 import remotecontrol.remotewithundo.command.DimmerLightOffCommand;
 import remotecontrol.remotewithundo.command.DimmerLightOnCommand;
 import remotecontrol.remotewithundo.command.MacroCommand;
 import remotecontrol.remotewithundo.receiver.AutomaticBlind;
-
 
 public class TestUndoRemote {
     private RemoteControlWithUndo remoteControlWithUndo;
@@ -32,23 +30,23 @@ public class TestUndoRemote {
     public void setUp() {
         remoteControlWithUndo = new RemoteControlWithUndo();
         automaticBlind = new AutomaticBlind("living room");
+        ceilingFan = new CeilingFan("living room");
+        light = new Light("bathroom");
 
         Command automaticBlindDownCommand = new AutomaticBlindDownCommand(automaticBlind);
         Command automaticBlindUpCommand = new AutomaticBlindUpCommand(automaticBlind);
         Command automaticBlindMediumCommand = new AutomaticBlindMediumCommand(automaticBlind);
 
-        ceilingFan = new CeilingFan("living room");
         Command ceilingFanHighCommand = new CeilingFanHighCommand(ceilingFan);
-        Command ceilingFanLowCommand = new CeilingFanLowCommand(ceilingFan);
         Command ceilingFanMediumCommand = new CeilingFanMediumCommand(ceilingFan);
         Command ceilingFanOffCommand = new CeilingFanOffCommand(ceilingFan);
 
-        light = new Light("bathroom");
         Command dimmerLightOffCommand = new DimmerLightOffCommand(light);
         Command dimmerLightOnCommand = new DimmerLightOnCommand(light);
 
         Command[] partyOn = {automaticBlindUpCommand, ceilingFanHighCommand, dimmerLightOnCommand};
         Command[] partyOff = {automaticBlindDownCommand, ceilingFanOffCommand, dimmerLightOffCommand};
+
         MacroCommand partyOnCommand = new MacroCommand(partyOn);
         MacroCommand partyOffCommand = new MacroCommand(partyOff);
 
@@ -105,5 +103,6 @@ public class TestUndoRemote {
         assertEquals(automaticBlind.getHeight(), AutomaticBlind.MIN_HEIGHT);
         assertEquals(ceilingFan.getSpeed(), CeilingFan.OFF);
         assertEquals(light.getLevel(), 0);
+
     }
 }

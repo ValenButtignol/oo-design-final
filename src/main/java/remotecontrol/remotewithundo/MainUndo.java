@@ -8,7 +8,7 @@ import remotecontrol.remotewithundo.command.LightOnCommand;
 import remotecontrol.remotewithundo.receiver.CeilingFan;
 import remotecontrol.remotewithundo.receiver.Light;
 
-public class Main {
+public class MainUndo {
  
 	public static void main(String[] args) {
 		RemoteControlWithUndo remoteControl = new RemoteControlWithUndo();

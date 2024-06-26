@@ -1,4 +1,4 @@
-package remote;
+package remotecontrol;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -16,24 +16,22 @@ import remotecontrol.remotewithundo.command.CeilingFanOffCommand;
 import remotecontrol.remotewithundo.command.Command;
 import remotecontrol.remotewithundo.receiver.AutomaticBlind;
 import remotecontrol.remotewithundo.receiver.CeilingFan;
-import remotecontrol.remotewithundo.receiver.Light;
 
 public class TestUndoAndRedoRemote {
     private RemoteControlWithUndoAndRedo remoteControl;
     private AutomaticBlind automaticBlind;
     private CeilingFan ceilingFan;
-    private Light light;
 
     @BeforeEach
     public void setUp() {
         remoteControl = new RemoteControlWithUndoAndRedo(3);
         automaticBlind = new AutomaticBlind("living room");
+        ceilingFan = new CeilingFan("living room");
 
         Command automaticBlindDownCommand = new AutomaticBlindDownCommand(automaticBlind);
         Command automaticBlindUpCommand = new AutomaticBlindUpCommand(automaticBlind);
         Command automaticBlindMediumCommand = new AutomaticBlindMediumCommand(automaticBlind);
 
-        ceilingFan = new CeilingFan("living room");
         Command ceilingFanHighCommand = new CeilingFanHighCommand(ceilingFan);
         Command ceilingFanLowCommand = new CeilingFanLowCommand(ceilingFan);
         Command ceilingFanMediumCommand = new CeilingFanMediumCommand(ceilingFan);
@@ -60,6 +58,7 @@ public class TestUndoAndRedoRemote {
         assertEquals(ceilingFan.getSpeed(), CeilingFan.MEDIUM);
         remoteControl.redoButtonWasPushed();
         assertEquals(ceilingFan.getSpeed(), CeilingFan.HIGH);
+
     }
 
     @Test
