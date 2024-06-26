@@ -8,12 +8,12 @@ public class Wizard extends AdventureCharacter {
     
     public Wizard() {
         super();
-        hp = Constants.WIZARD_HP;
+        setHp(Constants.WIZARD_HP);
         fightStyle = FightStyle.MAGE;
     }
 
     public Wizard(Weapon weapon) {
-        hp = Constants.WIZARD_HP;
+        setHp(Constants.WIZARD_HP);
         fightStyle = FightStyle.MAGE;
         setWeapon(weapon);
     }
@@ -25,6 +25,6 @@ public class Wizard extends AdventureCharacter {
 
     @Override
     public int hashCode() {
-        return Constants.WIZARD_HP + weapon.hashCode();
+        return initHp + weapon.hashCode();
     }
 }

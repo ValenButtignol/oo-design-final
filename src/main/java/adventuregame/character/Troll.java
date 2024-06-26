@@ -8,12 +8,12 @@ public class Troll extends AdventureCharacter {
     
     public Troll() {
         super();
-        hp = Constants.TROLL_HP;
+        setHp(Constants.TROLL_HP);
         fightStyle = FightStyle.MELEE;
     }
 
     public Troll(Weapon weapon) {
-        hp = Constants.TROLL_HP;
+        setHp(Constants.TROLL_HP);
         fightStyle = FightStyle.MELEE;
         setWeapon(weapon);
     }
@@ -25,6 +25,6 @@ public class Troll extends AdventureCharacter {
 
     @Override
     public int hashCode() {
-        return Constants.TROLL_HP + weapon.hashCode();
+        return initHp + weapon.hashCode();
     }
 }

@@ -10,51 +10,43 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import adventuregame.weapon.Axe;
-import adventuregame.weapon.BareFist;
-import adventuregame.weapon.Bow;
-import adventuregame.weapon.Hammer;
-import adventuregame.weapon.LongSword;
-import adventuregame.weapon.ShortSword;
-import adventuregame.weapon.Staff;
-import adventuregame.weapon.Wand;
+import adventuregame.factory.CharactersAndWeaponFactory;
+import adventuregame.factory.MixedVersionFactory;
 import adventuregame.weapon.Weapon;
-import adventuregame.weapon.gem.AmethystGem;
-import adventuregame.weapon.gem.BlueGem;
-import adventuregame.weapon.gem.GemDecorator;
-import adventuregame.weapon.gem.GreenGem;
-import adventuregame.weapon.gem.RedGem;
-import adventuregame.weapon.gem.SapphireGem;
-import adventuregame.weapon.gem.TopazGem;
 
 public class TestGems {
     
     @ParameterizedTest
     @MethodSource("weaponsWithGemsProvider")
-    public void testWeaponsWithGems(Weapon weapon, List<Class <? extends GemDecorator>> gems, Integer expectedDamage) {
-        weapon = createWeaponWithGem(gems, weapon);
-        
+    public void testWeaponsWithGems(String weaponType, List<String> gems, Integer expectedDamage) {
+        CharactersAndWeaponFactory factory = new MixedVersionFactory();
+        Weapon weapon = factory.createWeapon(weaponType);
+        for (String gem : gems) {
+            weapon = factory.addGem(weapon, gem);
+        }
         assertEquals(weapon.getDamage(), expectedDamage);
     }
 
     private static Stream<Object> weaponsWithGemsProvider() {
         return Stream.of(
-            Arguments.of(new Wand(), List.of(RedGem.class, BlueGem.class), 180),
-            Arguments.of(new LongSword(), List.of(GreenGem.class), 100),
-            Arguments.of(new ShortSword(), List.of(RedGem.class, BlueGem.class, GreenGem.class, BlueGem.class), 185),
-            Arguments.of(new Staff(), List.of(GreenGem.class, BlueGem.class), 195),
-            Arguments.of(new Bow(), List.of(AmethystGem.class, SapphireGem.class), 110),
-            Arguments.of(new Axe(), List.of(TopazGem.class), 135),
-            Arguments.of(new Hammer(), List.of(SapphireGem.class, TopazGem.class), 90)
+            Arguments.of("wand", List.of("red", "blue"), 180),
+            Arguments.of("long sword", List.of("green"), 100),
+            Arguments.of("short sword", List.of("red", "blue", "green", "blue"), 185),
+            Arguments.of("staff", List.of("green", "blue"), 195),
+            Arguments.of("bow", List.of("amethyst", "sapphire"), 110),
+            Arguments.of("axe", List.of("topaz"), 135),
+            Arguments.of("hammer", List.of("sapphire", "topaz"), 90)
         );
     }
 
     @ParameterizedTest
     @MethodSource("gemOverflowProvider")
-    public void negativeTestGemsOverflow(Weapon weapon, List<Class <? extends GemDecorator>> gems) {
+    public void negativeTestGemsOverflow(String weaponType, List<String> gems) {
+        CharactersAndWeaponFactory factory = new MixedVersionFactory();
+        Weapon weapon = factory.createWeapon(weaponType);
+
         Exception exceptionThrown = assertThrows(IllegalArgumentException.class, () -> {
-            
-            createWeaponWithGem(gems, weapon);
+            addGems(weapon, gems, factory);
         });
 
         assertEquals("No more stacking of gems is allowed", exceptionThrown.getMessage());
@@ -62,33 +54,20 @@ public class TestGems {
 
     private static Stream<Object> gemOverflowProvider() {
         return Stream.of(
-            Arguments.of(new Wand(), List.of(RedGem.class, BlueGem.class, GreenGem.class, RedGem.class)),
-            Arguments.of(new LongSword(), List.of(GreenGem.class, RedGem.class)),
-            Arguments.of(new ShortSword(), List.of(RedGem.class, BlueGem.class, GreenGem.class, BlueGem.class, BlueGem.class)),
-            Arguments.of(new Staff(), List.of(GreenGem.class, BlueGem.class, RedGem.class)),
-            Arguments.of(new BareFist(), List.of(GreenGem.class)),
-            Arguments.of(new Bow(), List.of(TopazGem.class, AmethystGem.class, SapphireGem.class)),
-            Arguments.of(new Axe(), List.of(TopazGem.class, BlueGem.class, AmethystGem.class, GreenGem.class)),
-            Arguments.of(new Hammer(), List.of(SapphireGem.class, RedGem.class, BlueGem.class))
+            Arguments.of("wand", List.of("red", "blue", "green", "red")),
+            Arguments.of("long sword", List.of("green", "red")),
+            Arguments.of("short sword", List.of("red", "blue", "green", "blue", "blue")),
+            Arguments.of("staff", List.of("green", "blue", "red")),
+            Arguments.of("bare fist", List.of("green")),
+            Arguments.of("bow", List.of("amethyst", "sapphire", "topaz")),
+            Arguments.of("axe", List.of("topaz", "blue", "amethyst", "green")),
+            Arguments.of("hammer", List.of("sapphire", "red", "blue"))
         );
     }
 
-    private static Weapon createWeaponWithGem(List<Class <? extends GemDecorator>> gems, Weapon weapon) {
-        for (Class <? extends GemDecorator> gem : gems) {
-            if (gem == RedGem.class) {
-                weapon = new RedGem(weapon);
-            } else if (gem == BlueGem.class) {
-                weapon =  new BlueGem(weapon);
-            } else if (gem == GreenGem.class) {
-                weapon = new GreenGem(weapon);
-            } else if (gem == SapphireGem.class) {
-                weapon = new SapphireGem(weapon);
-            } else if (gem == TopazGem.class) {
-                weapon = new TopazGem(weapon);
-            } else {
-                weapon = new AmethystGem(weapon);
-            }
+    private static void addGems(Weapon weapon, List<String> gems, CharactersAndWeaponFactory factory) {
+        for (String gem : gems) {
+            weapon = factory.addGem(weapon, gem);
         }
-        return weapon;
     }
 }

@@ -8,12 +8,12 @@ public class Gladiator extends AdventureCharacter {
     
     public Gladiator() {
         super();
-        hp = Constants.GLADIATOR_HP;
+        setHp(Constants.GLADIATOR_HP);
         fightStyle = FightStyle.MELEE;
     }
 
     public Gladiator(Weapon weapon) {
-        hp = Constants.GLADIATOR_HP;
+        setHp(Constants.GLADIATOR_HP);
         fightStyle = FightStyle.MELEE;
         setWeapon(weapon);
     }
@@ -25,6 +25,6 @@ public class Gladiator extends AdventureCharacter {
 
     @Override
     public int hashCode() {
-        return Constants.GLADIATOR_HP + weapon.hashCode();
+        return initHp + weapon.hashCode();
     }
 }

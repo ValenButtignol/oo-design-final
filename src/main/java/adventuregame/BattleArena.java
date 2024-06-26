@@ -31,14 +31,15 @@ public class BattleArena implements Subject {
     }
 
     public void fight() {
+        resetWinner();
         notifyStart(character1, character2);
         while (!isEnded()) {
             attack();
         }
 
         setWinner();
-        resetTurn();
         notifyEnd(winner);
+        reset();
     }
 
     public void attack() {
@@ -94,7 +95,13 @@ public class BattleArena implements Subject {
             winner = character2;
     }
 
-    private void resetTurn() {
+    private void reset() {
         isCharacter1Turn = true;
+        character1.reset();
+        character2.reset();
+    }
+
+    private void resetWinner() {
+        winner = null;
     }
 }

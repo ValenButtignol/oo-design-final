@@ -8,12 +8,12 @@ public class Dwarf extends AdventureCharacter {
     
     public Dwarf() {
         super();
-        hp = Constants.DWARF_HP;
+        setHp(Constants.DWARF_HP);
         fightStyle = FightStyle.MELEE;
     }
 
     public Dwarf(Weapon weapon) {
-        hp = Constants.DWARF_HP;
+        setHp(Constants.DWARF_HP);
         fightStyle = FightStyle.MELEE;
         setWeapon(weapon);
     }
@@ -25,6 +25,6 @@ public class Dwarf extends AdventureCharacter {
 
     @Override
     public int hashCode() {
-        return Constants.DWARF_HP + weapon.hashCode();
+        return initHp + weapon.hashCode();
     }
 }

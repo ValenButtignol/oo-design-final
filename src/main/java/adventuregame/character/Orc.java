@@ -8,12 +8,12 @@ public class Orc extends AdventureCharacter {
     
     public Orc() {
         super();
-        hp = Constants.ORC_HP;
+        setHp(Constants.ORC_HP);
         fightStyle = FightStyle.RANGED;
     }
 
     public Orc(Weapon weapon) {
-        hp = Constants.ORC_HP;
+        setHp(Constants.ORC_HP);
         fightStyle = FightStyle.RANGED;
         setWeapon(weapon);
     }
@@ -25,6 +25,6 @@ public class Orc extends AdventureCharacter {
 
     @Override
     public int hashCode() {
-        return Constants.ORC_HP + weapon.hashCode();
+        return initHp + weapon.hashCode();
     }
 }

@@ -7,6 +7,7 @@ import adventuregame.weapon.Weapon;
 public abstract class AdventureCharacter {
     protected Weapon weapon;
     protected Integer hp;
+    protected Integer initHp;
     protected FightStyle fightStyle;
 
     public AdventureCharacter() {
@@ -17,6 +18,11 @@ public abstract class AdventureCharacter {
         if (weapon.getFightStyle() != fightStyle && weapon.getFightStyle() != FightStyle.DEFAULT)
             throw new IllegalArgumentException("Weapon's fight style not compatible");
         this.weapon = weapon;
+    }
+
+    protected void setHp(Integer hp) {
+        this.hp = hp;
+        this.initHp = hp;
     }
 
     public Weapon getWeapon() {
@@ -42,6 +48,10 @@ public abstract class AdventureCharacter {
     public boolean isAlive() {
         return hp > 0;
     }
+   
+    public void reset() {
+        hp = initHp;
+    }
 
     @Override
     public boolean equals(Object otherCharacter) {
@@ -56,5 +66,4 @@ public abstract class AdventureCharacter {
         AdventureCharacter other = (AdventureCharacter) otherCharacter;
         return weapon.equals(other.weapon);
     }
-    
 }

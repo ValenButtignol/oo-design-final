@@ -8,12 +8,12 @@ public class Knight extends AdventureCharacter {
     
     public Knight() {
         super();
-        hp = Constants.KNIGHT_HP;
+        setHp(Constants.KNIGHT_HP);
         fightStyle = FightStyle.MELEE;
     }
 
     public Knight(Weapon weapon) {
-        hp = Constants.KNIGHT_HP;
+        setHp(Constants.KNIGHT_HP);
         fightStyle = FightStyle.MELEE;
         setWeapon(weapon);
     }
@@ -25,6 +25,6 @@ public class Knight extends AdventureCharacter {
 
     @Override
     public int hashCode() {
-        return Constants.KNIGHT_HP + weapon.hashCode();
+        return initHp + weapon.hashCode();
     }
 }
