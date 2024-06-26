@@ -15,19 +15,18 @@ import starbuzz.condiment.Whip;
 public class CoffeeMachine {
     
     public Beverage makeBeverage(String beverageType, CoffeeSize size) {
-        Beverage beverage = null;
         if (beverageType.equals("espresso")) {
-            beverage = new Espresso(size);
+            return new Espresso(size);
         } else if (beverageType.equals("houseblend")) {
-            beverage = new HouseBlend(size);
+            return new HouseBlend(size);
         } else if (beverageType.equals("darkroast")) {
-            beverage = new DarkRoast(size);
+            return new DarkRoast(size);
         } else if (beverageType.equals("decaf")) {
-            beverage = new Decaf(size);
+            return new Decaf(size);
         } else if (beverageType.equals("redcoffee")) {
-            beverage = new RedCoffee(size);
-        }
-        return beverage;
+            return new RedCoffee(size);
+        } else 
+            throw new IllegalArgumentException("Invalid beverage type");
     }
 
     public Beverage addCondiment(Beverage beverage, String condiment) {
@@ -41,7 +40,9 @@ public class CoffeeMachine {
             beverage = new Whip(beverage);
         } else if (condiment.equals("cinnamon")) {
             beverage = new Cinnamon(beverage);
-        }
+        } else 
+            throw new IllegalArgumentException("Invalid condiment");
+        
         return beverage;
     }
 }
