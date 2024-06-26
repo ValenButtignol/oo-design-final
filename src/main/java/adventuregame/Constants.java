@@ -13,7 +13,6 @@ public class Constants {
     public static final Integer AXE_DAMAGE = 95;
     public static final Integer HAMMER_DAMAGE = 40;
     
-
     // Constants for characters
     public static final Integer GLADIATOR_HP = 600;
     public static final Integer KNIGHT_HP = 500;
@@ -33,9 +32,3 @@ public class Constants {
     public static final Integer SAPPHIRE_GEM_DAMAGE = 10;
 
 }
-
-// Troll: 90  --> 700 --> 588 -> 470 --> 355 --> 240 --> 125 --> 10 --> 0
-// Axe: 115 --> 450 -- > 360 --> 270 --> 180 --> 90 --> 0
-
-
-//  
