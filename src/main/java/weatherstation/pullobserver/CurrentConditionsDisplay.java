@@ -1,9 +1,6 @@
 package weatherstation.pullobserver;
 
 import weatherstation.WeatherDataPullVersion;
-
-import javax.security.auth.Subject;
-
 import weatherstation.DisplayElement;
 import weatherstation.PullSubject;
 

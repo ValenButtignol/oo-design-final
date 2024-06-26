@@ -4,7 +4,6 @@ import weatherstation.WeatherDataPullVersion;
 import weatherstation.DisplayElement;
 import weatherstation.PullSubject;
 
-
 public class MockCurrentConditionsDisplay implements PullObserver, DisplayElement {
     private float temperature;
 	private float humidity;
