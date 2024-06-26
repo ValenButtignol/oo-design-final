@@ -13,8 +13,7 @@ import adapter.list.TupleAdapter;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 
-
-public class TupleAdapterTest {
+public class TestTupleAdapter {
     private ImmutableTuple<Integer> tuple;
     private static List<Integer> adapter;
 

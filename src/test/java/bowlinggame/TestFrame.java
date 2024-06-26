@@ -1,6 +1,7 @@
 package bowlinggame;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.stream.Stream;
@@ -68,7 +69,6 @@ public class TestFrame {
         );
     }
 
-
     @ParameterizedTest
     @MethodSource("illegalLastFrameProvider")
     public void negativeFirstRollOfLastFrame(int[] nextNextFrameRolls) {
@@ -95,9 +95,8 @@ public class TestFrame {
         frame.roll(10, 0);
         nextFrame.roll(10, 0);
         rollAll(nextNextFrame, nextNextFrameRolls);
-        assert(nextNextFrame.getScore() == expectedScore);
+        assertEquals(nextNextFrame.getScore(), expectedScore);
     }
-
 
     private static Stream<Arguments> lastFrameScoreProvider() {
         return Stream.of(
