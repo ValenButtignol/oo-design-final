@@ -34,7 +34,7 @@ public class TestStatsObserver {
     @MethodSource("statsObserverProvider")
     public void testStatsObserverWithOneFight(BattleArena battleArena, List<String> expectedDisplayList) {
         MockDisplayElement displayElement = new MockDisplayElement();
-        StatsObserver battleStartObserver = new StatsObserver(battleArena, displayElement);
+        StatsObserver battlStatsObserver = new StatsObserver(battleArena, displayElement);
         battleArena.fight();
         assert(displayElement.getDisplayList().equals(expectedDisplayList));
     }
@@ -54,7 +54,7 @@ public class TestStatsObserver {
         AdventureCharacter c4, List<String> firstExpectedDisplay, List<String> secondExpectedDisplay) {
             BattleArena battleArena = new BattleArena(c1, c2);
             MockDisplayElement displayElement = new MockDisplayElement();
-            StatsObserver battleStartObserver = new StatsObserver(battleArena, displayElement);
+            StatsObserver battlStatsObserver = new StatsObserver(battleArena, displayElement);
 
             battleArena.fight();
             assert(displayElement.getDisplayList().equals(firstExpectedDisplay));

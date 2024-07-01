@@ -1,6 +1,6 @@
 # Final Test OO-Design-2024
 
-This is a set of exercises to test object-oriented design notions. The included exercises are based on the usage of different design patterns to make them with an flexible design and easy to maintain in case of future requirement changes.
+This is a set of exercises to test object-oriented design notions. The included exercises are based on the usage of different design patterns to make them with a flexible design and easy to maintain in case of future requirement changes.
 
 For each exercise there is a main program or a test suite or both, that can be used to test the implementation.
 

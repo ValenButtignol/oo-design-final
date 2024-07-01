@@ -49,10 +49,8 @@ public class TestBattleObservers {
     @MethodSource("attackObserverProvider")
     public void testAttackObserver(BattleArena battleArena, List<String> expectedDisplayList) {
         MockDisplayElement displayElement = new MockDisplayElement();
-        AttackObserver battleStartObserver = new AttackObserver(battleArena, displayElement);
+        AttackObserver battlAttackObserver = new AttackObserver(battleArena, displayElement);
         battleArena.attack();
-        System.out.println(displayElement.getDisplayList());
-        System.out.println(expectedDisplayList);
         assert (displayElement.getDisplayList().equals(expectedDisplayList));
     }
 
@@ -67,7 +65,7 @@ public class TestBattleObservers {
     @MethodSource("winnerObserverProvider")
     public void testWinnerObserver(BattleArena battleArena, List<String> expectedDisplayList) {
         MockDisplayElement displayElement = new MockDisplayElement();
-        BattleEndObserver battleStartObserver = new BattleEndObserver(battleArena, displayElement);
+        BattleEndObserver battleEndObserver = new BattleEndObserver(battleArena, displayElement);
         battleArena.fight();
         assert(displayElement.getDisplayList().equals(expectedDisplayList));
     }

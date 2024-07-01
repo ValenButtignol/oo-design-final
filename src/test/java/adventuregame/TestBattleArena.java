@@ -127,10 +127,10 @@ public class TestBattleArena {
         CharactersAndWeaponFactory factory = new MixedVersionFactory();
         Weapon barefist = factory.createWeapon("bare fist");
         AdventureCharacter c1 = factory.createCharacter(characterType, barefist);
-        Weapon weaponToBeSetted = factory.createWeapon(weaponType);
+        Weapon weaponToBeSet = factory.createWeapon(weaponType);
         // arrange
         Exception exceptionThrown = assertThrows(IllegalArgumentException.class, () -> {
-            c1.setWeapon(weaponToBeSetted);
+            c1.setWeapon(weaponToBeSet);
         });
         assertEquals("Weapon's fight style not compatible", exceptionThrown.getMessage());
     }
