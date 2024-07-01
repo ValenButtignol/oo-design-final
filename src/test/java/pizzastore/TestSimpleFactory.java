@@ -9,30 +9,25 @@ import org.junit.jupiter.params.provider.MethodSource;
 import pizzastore.simplefactory.Pizza;
 import pizzastore.simplefactory.PizzaStore;
 import pizzastore.simplefactory.SimplePizzaFactory;
-import pizzastore.simplefactory.concretepizza.ArgentinianPizza;
-import pizzastore.simplefactory.concretepizza.CheesePizza;
-import pizzastore.simplefactory.concretepizza.ClamPizza;
-import pizzastore.simplefactory.concretepizza.PepperoniPizza;
-import pizzastore.simplefactory.concretepizza.VeggiePizza;
 
 public class TestSimpleFactory {
     
     @ParameterizedTest
     @MethodSource("simpleFactoryPizzaProvider")
-    public void testSimpleFactoryPizzaCreation(String type, Class <? extends Pizza> expectedPizzaClass) {
+    public void testSimpleFactoryPizzaCreation(String type, String expectedPizzaName) {
         
         PizzaStore pizzaStore = new PizzaStore(new SimplePizzaFactory());
         Pizza pizza = pizzaStore.orderPizza(type);
-        assert(pizza.getClass().equals(expectedPizzaClass));
+        assert(pizza.getName().equals(expectedPizzaName));
     }
 
     private static Stream<Object> simpleFactoryPizzaProvider() {
         return Stream.of(
-            Arguments.of("argentinian", ArgentinianPizza.class),
-            Arguments.of("cheese", CheesePizza.class),
-            Arguments.of("pepperoni", PepperoniPizza.class),
-            Arguments.of("clam", ClamPizza.class),
-            Arguments.of("veggie", VeggiePizza.class)
+            Arguments.of("argentinian", "Argentinian Pizza"),
+            Arguments.of("cheese", "Cheese Pizza"),
+            Arguments.of("pepperoni", "Pepperoni Pizza"),
+            Arguments.of("clam", "Clam Pizza"),
+            Arguments.of("veggie", "Veggie Pizza")
         );
     }
 }

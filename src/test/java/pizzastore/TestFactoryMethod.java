@@ -10,53 +10,48 @@ import pizzastore.factorymethod.ChicagoPizzaStore;
 import pizzastore.factorymethod.NYPizzaStore;
 import pizzastore.factorymethod.Pizza;
 import pizzastore.factorymethod.PizzaStore;
-import pizzastore.factorymethod.argentinianpizza.ArgentinianCheesePizza;
-import pizzastore.factorymethod.argentinianpizza.ArgentinianFugazzettaPizza;
-import pizzastore.factorymethod.argentinianpizza.ArgentinianPizza;
-import pizzastore.factorymethod.chicagopizza.ChicagoStylePepperoniPizza;
 import pizzastore.factorymethod.factoryv2.ArgentinianPizzaFactory;
 import pizzastore.factorymethod.factoryv2.ChicagoPizzaFactory;
 import pizzastore.factorymethod.factoryv2.NYPizzaFactory;
 import pizzastore.factorymethod.factoryv2.PizzaFactory;
 import pizzastore.factorymethod.factoryv2.PizzaStorev2;
-import pizzastore.factorymethod.nypizza.NYStyleCheesePizza;
 
 public class TestFactoryMethod {
     
     @ParameterizedTest
     @MethodSource("factoryMethodPizzaProvider")
-    public void testFactoryMethodPizzaCreation(String type, Class <? extends Pizza> expectedPizzaClass, PizzaStore pizzaStore) {
+    public void testFactoryMethodPizzaCreation(String type, String expectedPizzaName, PizzaStore pizzaStore) {
         
         Pizza pizza = pizzaStore.orderPizza(type);
-        assert(pizza.getClass().equals(expectedPizzaClass));
+        assert(pizza.getName().equals(expectedPizzaName));
     }
 
     private static Stream<Object> factoryMethodPizzaProvider() {
         return Stream.of(
-            Arguments.of("argentinian", ArgentinianPizza.class, new ArgentinianPizzaStore()),
-            Arguments.of("cheese", NYStyleCheesePizza.class, new NYPizzaStore()),
-            Arguments.of("pepperoni", ChicagoStylePepperoniPizza.class, new ChicagoPizzaStore()),
-            Arguments.of("fugazzetta", ArgentinianFugazzettaPizza.class, new ArgentinianPizzaStore()),
-            Arguments.of("cheese", ArgentinianCheesePizza.class, new ArgentinianPizzaStore())
+            Arguments.of("argentinian", "Argentinian Pizza", new ArgentinianPizzaStore()),
+            Arguments.of("cheese", "NY Style Sauce and Cheese Pizza", new NYPizzaStore()),
+            Arguments.of("pepperoni", "Chicago Style Pepperoni Pizza", new ChicagoPizzaStore()),
+            Arguments.of("fugazzetta", "Argentinian Fugazzetta Pizza", new ArgentinianPizzaStore()),
+            Arguments.of("cheese", "Argentinian Cheese Pizza", new ArgentinianPizzaStore())
         );
     }
 
     @ParameterizedTest
     @MethodSource("abstractPizzaProvider")
-    public void testAbstractPizzaCreation(String type, Class <? extends Pizza> expectedPizzaClass, PizzaFactory pizzaFactory) {
+    public void testAbstractPizzaCreation(String type, String expectedPizzaName, PizzaFactory pizzaFactory) {
         
         PizzaStorev2 pizzaStore = new PizzaStorev2(pizzaFactory);
         Pizza pizza = pizzaStore.orderPizza(type);
-        assert(pizza.getClass().equals(expectedPizzaClass));
+        assert(pizza.getName().equals(expectedPizzaName));
     }
 
     private static Stream<Object> abstractPizzaProvider() {
         return Stream.of(
-            Arguments.of("argentinian", ArgentinianPizza.class, new ArgentinianPizzaFactory()),
-            Arguments.of("cheese", NYStyleCheesePizza.class, new NYPizzaFactory()),
-            Arguments.of("pepperoni", ChicagoStylePepperoniPizza.class, new ChicagoPizzaFactory()),
-            Arguments.of("fugazzetta", ArgentinianFugazzettaPizza.class, new ArgentinianPizzaFactory()),
-            Arguments.of("cheese", ArgentinianCheesePizza.class, new ArgentinianPizzaFactory())
+            Arguments.of("argentinian", "Argentinian Pizza", new ArgentinianPizzaFactory()),
+            Arguments.of("cheese", "NY Style Sauce and Cheese Pizza", new NYPizzaFactory()),
+            Arguments.of("pepperoni", "Chicago Style Pepperoni Pizza", new ChicagoPizzaFactory()),
+            Arguments.of("fugazzetta", "Argentinian Fugazzetta Pizza", new ArgentinianPizzaFactory()),
+            Arguments.of("cheese", "Argentinian Cheese Pizza", new ArgentinianPizzaFactory())
         );
     }
 }
