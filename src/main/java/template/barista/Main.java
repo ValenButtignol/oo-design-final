@@ -3,10 +3,10 @@ package template.barista;
 public class Main {
 	public static void main(String[] args) {
  
-		Tea tea = new Tea();
-		Coffee coffee = new Coffee();
-		RedCoffee redCoffee = new RedCoffee();
-		BlackCoffee blackCoffee = new BlackCoffee();
+		CaffeineBeverage tea = new Tea();
+		CaffeineBeverage coffee = new Coffee();
+		CaffeineBeverage redCoffee = new RedCoffee();
+		CaffeineBeverage blackCoffee = new BlackCoffee();
  
 		System.out.println("\nMaking tea...");
 		tea.prepareRecipe();
