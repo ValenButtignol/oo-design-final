@@ -2,52 +2,41 @@ package texteditor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
+
+import texteditor.command.Command;
 
 public class TextEditor {
-    List<String> buffer;
-    
-    public TextEditor() {
-        buffer = new ArrayList<>();
+    private Stack<Command> undoStack = new Stack<>();
+    private Stack<Command> redoStack = new Stack<>();
+    private List<Command> commands = new ArrayList<>();
+
+    public void addCommand(Command command) {
+        commands.add(command);
     }
 
-    public void addLine(int pos, String line) {
-        buffer.add(pos, line);
-    }
-    
-    public String deleteLine(int pos) {
-        return buffer.remove(pos);
+    public void execute(Integer index) {
+        Command command = commands.get(index);
+        command.execute();
+        undoStack.push(command);
+        redoStack.clear();
     }
 
-    public void print() {
-        for (String line : buffer) {
-            System.out.println(line);
+    public void undo() {
+        if (undoStack.isEmpty()) {
+            return;
         }
+        Command command = undoStack.pop();
+        command.undo();
+        redoStack.push(command);
     }
 
-    public List<String> getBuffer() {
-        return buffer;
-    }
-
-    public void addWord(int linePos, int pos, String word) {
-        String[] words = buffer.get(linePos).split(" ");
-        List<String> wordList = new ArrayList<>(List.of(words));
-
-        if (pos < 0 || pos > wordList.size()) 
-            throw new IllegalArgumentException("Invalid position");
-
-        wordList.add(pos, word);
-        buffer.set(linePos, String.join(" ", wordList));
-    }
-
-    public String deleteWord(int linePos, int pos) {
-        String[] words = buffer.get(linePos).split(" ");
-        List<String> wordList = new ArrayList<>(List.of(words));
-        
-        if (pos < 0 || pos >= wordList.size()) 
-            throw new IllegalArgumentException("Invalid position");
-    
-        String removedWord = wordList.remove(pos);
-        buffer.set(linePos, String.join(" ", wordList));
-        return removedWord;
+    public void redo() {
+        if (redoStack.isEmpty()) {
+            return;
+        }
+        Command command = redoStack.pop();
+        command.execute();
+        undoStack.push(command);
     }
 }

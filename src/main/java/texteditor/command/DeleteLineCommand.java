@@ -1,25 +1,39 @@
 package texteditor.command;
 
-import texteditor.TextEditor;
+import java.util.List;
+import java.util.Scanner;
+
+import texteditor.Buffer;
 
 public class DeleteLineCommand implements Command {
 
     private int pos;
-    private TextEditor textEditor;
     private String deletedLine;
+    private Buffer buffer;
+    Scanner scanner = new Scanner(System.in);
 
-    public DeleteLineCommand(TextEditor editor, int pos) {
-        this.pos = pos;
-        this.textEditor = editor;
+    public DeleteLineCommand(Buffer buffer) {
+        this.buffer = buffer;
     }
 
     @Override
     public void execute() {
-        deletedLine = textEditor.deleteLine(pos);
+        scanPos();
+        List<String> text = buffer.getBuffer();
+        deletedLine = text.remove(pos);
+        buffer.setBuffer(text);
     }
-
+    
     @Override
     public void undo() {
-        textEditor.addLine(pos, deletedLine);
+        List<String> text = buffer.getBuffer();
+        text.add(pos, deletedLine);
+        buffer.setBuffer(text);
+    }
+    
+    private void scanPos() {
+        System.out.print("Enter line index: ");
+        int pos = scanner.nextInt();
+        this.pos = pos;
     }
 }
