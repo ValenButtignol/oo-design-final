@@ -2,6 +2,7 @@ package caesarcracker;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.io.InputStream;
 import java.io.LineNumberInputStream;
 import java.io.StringBufferInputStream;
 import java.util.stream.Stream;
@@ -17,11 +18,12 @@ public class TestCaesarCracker {
     @MethodSource("encoderMessageProvider")
     public void testCaesarCrackerEncoder(String input, String expectedEncodedString, int shifts) {
         StringBuilder encodedMessage = new StringBuilder();
-        CaesarEncoder encoder = new CaesarEncoder(new StringBufferInputStream(input), shifts, encodedMessage);
+        InputStream encoder = new CaesarEncoder(new StringBufferInputStream(input), shifts);
 
         int c;
         try {
             while ((c = encoder.read()) >= 0) {
+                encodedMessage.append((char) c);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,11 +45,12 @@ public class TestCaesarCracker {
     @MethodSource("decoderMessageProvider")
     public void testCaesarCrackerDecoder(String encodedMessage, String expectedDecodedString, int shifts) {
         StringBuilder decodedMessage = new StringBuilder();
-        CaesarDecoder decoder = new CaesarDecoder(new StringBufferInputStream(encodedMessage), shifts, decodedMessage);
+        InputStream decoder = new CaesarDecoder(new StringBufferInputStream(encodedMessage), shifts);
         int c;
             
         try {
             while ((c = decoder.read()) >= 0) {
+                decodedMessage.append((char) c);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -71,11 +74,12 @@ public class TestCaesarCracker {
         StringBuilder decodedMessage = new StringBuilder();
         LineNumberInputStream encoder = new LineNumberInputStream(
             new CaesarEncoder(
-                new StringBufferInputStream(input), shifts, encodedMessage));
+                new StringBufferInputStream(input), shifts));
 
         int c;
         try {
             while ((c = encoder.read()) >= 0) {
+                encodedMessage.append((char) c);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -83,10 +87,11 @@ public class TestCaesarCracker {
         
         LineNumberInputStream decoder = new LineNumberInputStream(
             new CaesarDecoder(
-                new StringBufferInputStream(encodedMessage.toString()), shifts, decodedMessage));
+                new StringBufferInputStream(encodedMessage.toString()), shifts));
             
         try {
             while ((c = decoder.read()) >= 0) {
+                decodedMessage.append((char) c);
             }
         } catch (Exception e) {
             e.printStackTrace();

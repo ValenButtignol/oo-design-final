@@ -1,8 +1,9 @@
 package ducksimulator;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-import ducksimulator.flybehavior.FlyRocketPowered;
 import ducksimulator.flybehavior.MockFlyNoWay;
 import ducksimulator.flybehavior.MockFlyRocketPowered;
 import ducksimulator.quackbehavior.MockMuteQuack;
@@ -12,12 +13,6 @@ import output.MockOutputManager;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DuckSimulatorTests {
-
-    @Test
-    public void testDuckSimulator() {
-        Duck duck = new MallardDuck();
-        duck.setFlyBehavior(new FlyRocketPowered());
-    }
 
     @Test
     public void testChangeOfFlyBehavior() {
@@ -61,5 +56,10 @@ public class DuckSimulatorTests {
         assertThat(ducksFlock.getDuck(0)).isEqualTo(mallardDuck);
         assertThat(ducksFlock.getDuck(1)).isEqualTo(modelDuck);
         assertThat(ducksFlock.getDuck(2)).isEqualTo(paperDuck);
+
+        ducksFlock.removeDuck(paperDuck);
+        assertThat(ducksFlock.getDuck(0)).isEqualTo(mallardDuck);
+        assertThat(ducksFlock.getDuck(1)).isEqualTo(modelDuck);
+        assertEquals(ducksFlock.getDucksFlock().size(), 2);
     }
 }

@@ -15,6 +15,10 @@ public class PrimeNumberSystem {
         this.outputManager = outputManager;
     }
 
+    public void setPrimeNumberGenerator(PrimeNumberGenerator primeNumberGenerator) {
+        this.primeNumberGenerator = primeNumberGenerator;
+    }
+
     public List<Integer> printFirstNPrimeNumbers(int number) {
         List<Integer> primeNumbers = primeNumberGenerator.getPrimeNumbers(number);
         outputManager.print(primeNumbers.toString());

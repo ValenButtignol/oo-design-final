@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.AbstractList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -55,6 +56,22 @@ public class ImmutableArrayListTest {
     }
 
     @Test
+    public void testLastIndexOf() {
+        String[] elements = { "A", "B", "C", "B" };
+        List<String> list = new ImmutableArrayList<>(elements);
+        assertEquals(0, list.lastIndexOf("A"));
+        assertEquals(-1, list.lastIndexOf("D"));
+        assertEquals(3, list.lastIndexOf("B"));
+    }
+
+    @Test
+    public void testClear() {
+        String[] elements = { "A", "B", "C" };
+        List<String> list = new ImmutableArrayList<>(elements);
+        assertThrows(UnsupportedOperationException.class, () -> list.clear());
+    }
+
+    @Test
     public void testSet() {
         String[] elements = { "A", "B", "C" };
         List<String> list = new ImmutableArrayList<>(elements);
@@ -66,6 +83,20 @@ public class ImmutableArrayListTest {
         String[] elements = { "A", "B", "C" };
         List<String> list = new ImmutableArrayList<>(elements);
         assertThrows(UnsupportedOperationException.class, () -> list.add("D"));
+    }
+
+    @Test()
+    public void testAddInIndex() {
+        String[] elements = { "A", "B", "C" };
+        List<String> list = new ImmutableArrayList<>(elements);
+        assertThrows(UnsupportedOperationException.class, () -> list.add(1, "D"));
+    }
+
+    @Test()
+    public void testAddAll() {
+        String[] elements = { "A", "B", "C" };
+        List<String> list = new ImmutableArrayList<>(elements);
+        assertThrows(UnsupportedOperationException.class, () -> list.addAll(1, List.of("D", "E")));
     }
 
     @Test()

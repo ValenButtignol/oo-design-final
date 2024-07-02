@@ -1,18 +1,18 @@
 package adventuregame.observer;
 
-import adventuregame.Subject;
+import adventuregame.BattleArena;
 import adventuregame.character.AdventureCharacter;
 import adventuregame.displays.DisplayElement;
 import adventuregame.weapon.Weapon;
 
 public class AttackObserver implements Observer {
 
-    private Subject battleArena;
+    private BattleArena battleArena;
     private AdventureCharacter attacker;
     private AdventureCharacter target;
     private DisplayElement displayElement;
 
-    public AttackObserver(Subject battleArena, DisplayElement displayElement) {
+    public AttackObserver(BattleArena battleArena, DisplayElement displayElement) {
         this.battleArena = battleArena;
         battleArena.registerObserver(this);
         this.displayElement = displayElement;

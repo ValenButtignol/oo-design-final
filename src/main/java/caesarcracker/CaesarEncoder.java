@@ -6,13 +6,11 @@ import java.io.InputStream;
 
 public class CaesarEncoder extends FilterInputStream {
 
-    private StringBuilder encodedMessage;
     private int shifts; // amount of shifts to encode the input
 
-    public CaesarEncoder(InputStream in, int shifts, StringBuilder encodedMessage) {
+    public CaesarEncoder(InputStream in, int shifts) {
         super(in);
         this.shifts = shifts;
-        this.encodedMessage = encodedMessage;    
     }
 
     @Override
@@ -20,7 +18,6 @@ public class CaesarEncoder extends FilterInputStream {
 		int c = in.read();
         if (c != -1) {
             c = encode((char) c);
-            encodedMessage.append((char) c);
         }
 		return c;
 	}

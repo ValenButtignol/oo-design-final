@@ -1,18 +1,18 @@
 package adventuregame.observer;
 
-import adventuregame.Subject;
+import adventuregame.BattleArena;
 import adventuregame.character.AdventureCharacter;
 import adventuregame.displays.DisplayElement;
 import adventuregame.weapon.Weapon;
 
 public class BattleStartObserver implements Observer {
 
-    private Subject battleArena;
+    private BattleArena battleArena;
     private AdventureCharacter character1;
     private AdventureCharacter character2;
     private DisplayElement displayElement;
 
-    public BattleStartObserver(Subject battleArena, DisplayElement displayElement) {
+    public BattleStartObserver(BattleArena battleArena, DisplayElement displayElement) {
         this.battleArena = battleArena;
         battleArena.registerObserver(this);
         this.displayElement = displayElement;
@@ -40,5 +40,4 @@ public class BattleStartObserver implements Observer {
         displayElement.display("Battle Started: " + character1.toString() + " with " + weapon1.toString() + " vs "
             + character2.toString() + " with " + weapon2.toString());
     }
-
 }

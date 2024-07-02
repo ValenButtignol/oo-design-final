@@ -1,16 +1,16 @@
 package adventuregame.observer;
 
-import adventuregame.Subject;
+import adventuregame.BattleArena;
 import adventuregame.character.AdventureCharacter;
 import adventuregame.displays.DisplayElement;
 
 public class BattleEndObserver implements Observer {
  
-    private Subject battleArena;
+    private BattleArena battleArena;
     private AdventureCharacter winner;
     private DisplayElement displayElement;
 
-    public BattleEndObserver(Subject battleArena, DisplayElement displayElement) {
+    public BattleEndObserver(BattleArena battleArena, DisplayElement displayElement) {
         this.battleArena = battleArena;
         battleArena.registerObserver(this);
         this.displayElement = displayElement;

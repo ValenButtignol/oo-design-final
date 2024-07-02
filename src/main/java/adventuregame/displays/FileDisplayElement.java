@@ -15,8 +15,8 @@ public class FileDisplayElement extends DisplayElement {
     @Override
     public void display(String str) {
         try {
-            FileWriter writer = new FileWriter(filePath);
-            writer.write(str);
+            FileWriter writer = new FileWriter(filePath, true);
+            writer.write(str + System.lineSeparator()); 
             writer.close();
         } catch (IOException e) {
             System.out.println("An error occurred while writing to the file: " + e.getMessage());

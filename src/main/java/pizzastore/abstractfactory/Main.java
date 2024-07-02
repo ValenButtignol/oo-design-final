@@ -30,5 +30,9 @@ public class Main {
  
 		pizza = chicagoStore.orderPizza("veggie");
 		System.out.println("Joel ordered a " + pizza + "\n");
+
+		PizzaStore argentinianPizzaStore = new ArgentinianPizzaStore();
+		pizza = argentinianPizzaStore.orderPizza("cheese");
+		System.out.println("Joel ordered a " + pizza + "\n");
 	}
 }

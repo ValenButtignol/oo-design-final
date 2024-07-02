@@ -2,17 +2,17 @@ package adventuregame.observer;
 
 import java.util.HashMap;
 
-import adventuregame.Subject;
+import adventuregame.BattleArena;
 import adventuregame.character.AdventureCharacter;
 import adventuregame.displays.DisplayElement;
 
 public class StatsObserver implements Observer {
 
-    private Subject battleArena;
+    private BattleArena battleArena;
     private DisplayElement displayElement;
     private HashMap<AdventureCharacter, Integer> winsCount;
 
-    public StatsObserver(Subject battleArena, DisplayElement displayElement) {
+    public StatsObserver(BattleArena battleArena, DisplayElement displayElement) {
         this.battleArena = battleArena;
         battleArena.registerObserver(this);
         this.displayElement = displayElement;

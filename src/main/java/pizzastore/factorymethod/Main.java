@@ -29,5 +29,9 @@ public class Main {
  
 		pizza = chicagoStore.orderPizza("veggie");
 		System.out.println("Joel ordered a " + pizza.getName() + "\n");
+
+		PizzaStore argentinianStore = new ArgentinianPizzaStore();
+		pizza = argentinianStore.orderPizza("cheese");
+		System.out.println("Mark ordered a: " + pizza.getName() + "\n");
 	}
 }

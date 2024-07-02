@@ -12,6 +12,22 @@ public class TestWeatherData {
     public void testChangingObserversDinamically() {
         WeatherData weatherData = new WeatherData();
 	
+		MockCurrentConditionsDisplay conditionsDisplay = new MockCurrentConditionsDisplay(weatherData);
+
+		weatherData.setMeasurements(80, 65, 30.4f);
+        assert(conditionsDisplay.getData().equals("(80.0, 65.0)"));
+
+        MockCelsiusDisplay celsiusDisplay = new MockCelsiusDisplay(weatherData);
+
+		weatherData.setMeasurements(82, 70, 29.2f);
+        assert(conditionsDisplay.getData().equals("(82.0, 70.0)"));
+        assert(celsiusDisplay.getData().equals("27.777779"));
+    }
+
+    @Test
+    public void testConditionsDisplay() {
+        WeatherData weatherData = new WeatherData();
+	
 		MockCurrentConditionsDisplay mockObserver = new MockCurrentConditionsDisplay(weatherData);
 
 		weatherData.setMeasurements(80, 65, 30.4f);
@@ -49,18 +65,5 @@ public class TestWeatherData {
         weatherData.setMeasurements(82, 70, 29.2f);
         System.out.println(mockObserver.getData());
         assert(mockObserver.getData().equals("86.90124"));
-    }
-
-    @Test
-    public void testPullVersion() {
-        WeatherData weatherData = new WeatherData();
-        
-        MockCurrentConditionsDisplay mockObserver = new MockCurrentConditionsDisplay(weatherData);
-
-        weatherData.setMeasurements(80, 65, 30.4f);
-        assert(mockObserver.getData().equals("(80.0, 65.0)"));
-
-        weatherData.setMeasurements(82, 70, 29.2f);
-        assert(mockObserver.getData().equals("(82.0, 70.0)"));
     }
 }
