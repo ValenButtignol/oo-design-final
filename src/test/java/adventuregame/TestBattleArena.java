@@ -18,7 +18,6 @@ import adventuregame.character.Knight;
 import adventuregame.character.Orc;
 import adventuregame.character.Troll;
 import adventuregame.character.Wizard;
-import adventuregame.factory.AdventureGameFactoryClient;
 import adventuregame.factory.CharactersAndWeaponFactory;
 import adventuregame.factory.MixedVersionFactory;
 import adventuregame.weapon.Axe;
@@ -97,18 +96,17 @@ public class TestBattleArena {
     @ParameterizedTest
     @MethodSource("charactersWithGemsProvider")
     public void testBattleArenaWithGems(String characterType1, String weaponType1, List<String> gems1, String characterType2, String weaponType2, List<String> gems2) {
-        AdventureGameFactoryClient client = new AdventureGameFactoryClient(new MixedVersionFactory());
+        BattleController client = new BattleController(new MixedVersionFactory());
 
         // arrange
         AdventureCharacter c1 = client.createCharacterWithWeapon(characterType1, weaponType1, gems1);
-        AdventureCharacter c2 = client.createCharacterWithWeapon(characterType2, weaponType2, gems2);
-        BattleArena battleArena = new BattleArena(c1, c2);
+        client.createCharacterWithWeapon(characterType2, weaponType2, gems2);
 
         // act
-        battleArena.fight();
+        client.fight(0, 1);
 
         // assert
-        assert(battleArena.getWinner().equals(c1));
+        assert(client.getBattleArena().getWinner().equals(c1));
     }
 
     private static Stream<Object> charactersWithGemsProvider() {
@@ -138,10 +136,10 @@ public class TestBattleArena {
     @ParameterizedTest
     @MethodSource("characterAndWeaponProvider")
     public void negativeTestCharacterWithWeaponCreation(String characterType, String weaponType) {  
-        AdventureGameFactoryClient client = new AdventureGameFactoryClient(new MixedVersionFactory());
+        BattleController client = new BattleController(new MixedVersionFactory());
         // arrange
         Exception exceptionThrown = assertThrows(IllegalArgumentException.class, () -> {
-            client.createCharacterWithWeapon(characterType, weaponType);
+            client.createCharacterWithWeapon(characterType, weaponType, List.of());
         });
         assertEquals("Weapon's fight style not compatible", exceptionThrown.getMessage());
     }

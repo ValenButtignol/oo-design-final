@@ -12,8 +12,12 @@ public class BattleArena implements Subject {
     private AdventureCharacter winner;
     private boolean isCharacter1Turn;
     private List<Observer> observers;
-
     
+    public BattleArena() {
+        this.isCharacter1Turn = true;
+        observers = new ArrayList<>();
+    }
+
     public BattleArena(AdventureCharacter character1, AdventureCharacter character2) {
         this.character1 = character1;
         this.character2 = character2;
@@ -31,7 +35,7 @@ public class BattleArena implements Subject {
     }
 
     public void fight() {
-        resetWinner();
+        resetWinnerAndTurn();
         notifyStart(character1, character2);
         while (!isEnded()) {
             attack();
@@ -39,7 +43,6 @@ public class BattleArena implements Subject {
 
         setWinner();
         notifyEnd(winner);
-        reset();
     }
 
     public void attack() {
@@ -95,13 +98,8 @@ public class BattleArena implements Subject {
             winner = character2;
     }
 
-    private void reset() {
-        isCharacter1Turn = true;
-        character1.reset();
-        character2.reset();
-    }
-
-    private void resetWinner() {
+    private void resetWinnerAndTurn() {
         winner = null;
+        isCharacter1Turn = true;
     }
 }
