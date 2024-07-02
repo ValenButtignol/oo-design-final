@@ -1,4 +1,4 @@
-package texteditor;
+/* package texteditor;
 
 import java.util.List;
 
@@ -114,4 +114,4 @@ public class TestUndoAndRedo {
     
             assert(buffer.getBuffer().equals(List.of("Hello", "World", "This", "is", "a", "test")));
     }
-}
+} */

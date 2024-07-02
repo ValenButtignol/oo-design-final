@@ -17,7 +17,6 @@ public class AddLineCommand implements Command {
     
     @Override
     public void execute() {
-        scanPosAndLine();
         List<String> text = buffer.getBuffer();
         text.add(pos, line);
         buffer.setBuffer(text);
@@ -30,13 +29,21 @@ public class AddLineCommand implements Command {
         buffer.setBuffer(text);
     }
     
-    private void scanPosAndLine() {
+    @Override
+    public void scanData() {
         System.out.print("Enter line index: ");
-        int pos = scanner.nextInt();
-        this.pos = pos;
+        pos = scanner.nextInt();
         scanner.nextLine(); // Consume newline
+        
         System.out.print("Enter line text: ");
-        String line = scanner.nextLine();
+        line = scanner.nextLine();
+    }
+
+    public void setLine(String line) {
         this.line = line;
+    }
+
+    public void setPos(int pos) {
+        this.pos = pos;
     }
 }

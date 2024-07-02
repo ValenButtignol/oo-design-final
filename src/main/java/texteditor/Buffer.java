@@ -18,41 +18,12 @@ public class Buffer {
         return buffer;
     }
 
-    //////////////////
-    public void addLine(int pos, String line) {
-        buffer.add(pos, line);
-    }
-    
-    public String deleteLine(int pos) {
-        return buffer.remove(pos);
-    }
-
-    public void print() {
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
         for (String line : buffer) {
-            System.out.println(line);
+            sb.append(line).append("\n");
         }
-    }
-
-    public void addWord(int linePos, int pos, String word) {
-        String[] words = buffer.get(linePos).split(" ");
-        List<String> wordList = new ArrayList<>(List.of(words));
-
-        if (pos < 0 || pos > wordList.size()) 
-            throw new IllegalArgumentException("Invalid position");
-
-        wordList.add(pos, word);
-        buffer.set(linePos, String.join(" ", wordList));
-    }
-
-    public String deleteWord(int linePos, int pos) {
-        String[] words = buffer.get(linePos).split(" ");
-        List<String> wordList = new ArrayList<>(List.of(words));
-        
-        if (pos < 0 || pos >= wordList.size()) 
-            throw new IllegalArgumentException("Invalid position");
-    
-        String removedWord = wordList.remove(pos);
-        buffer.set(linePos, String.join(" ", wordList));
-        return removedWord;
+        return sb.toString();
     }
 }

@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import texteditor.Buffer;
-import texteditor.TextEditor;
 
 public class AddWordCommand implements Command {
     private int linePos;
@@ -19,51 +18,56 @@ public class AddWordCommand implements Command {
         this.buffer = buffer;
     }
 
+    public void setLinePos(int linePos) {
+        this.linePos = linePos;
+    }
+
+    public void setWordPos(int wordPos) {
+        this.wordPos = wordPos;
+    }
+
+    public void setWord(String word) {
+        this.word = word;
+    }
+
     @Override
     public void execute() {
         List<String> text = buffer.getBuffer();
         String[] words = text.get(linePos).split(" ");       
         List<String> wordList = new ArrayList<>(List.of(words));
         
-        if (pos < 0 || pos > wordList.size()) 
+        if (wordPos < 0 || wordPos > wordList.size()) 
             throw new IllegalArgumentException("Invalid position");
         
-        wordList.add(pos, word);
+        wordList.add(wordPos, word);
         text.set(linePos, String.join(" ", wordList));
         buffer.setBuffer(text);
     }
 
     @Override
     public void undo() {
-        scanPosLineAndWord();
-        
-        editor.deleteWord(linePos, pos);
-        
-
         List<String> text = buffer.getBuffer();
-        String[] words = buffer.get(linePos).split(" ");
+        String[] words = text.get(linePos).split(" ");
         List<String> wordList = new ArrayList<>(List.of(words));
         
-        if (pos < 0 || pos >= wordList.size()) 
+        if (wordPos < 0 || wordPos >= wordList.size()) 
             throw new IllegalArgumentException("Invalid position");
     
-        String removedWord = wordList.remove(pos);
-        buffer.set(linePos, String.join(" ", wordList));
-        return removedWord;
+        wordList.remove(wordPos);
+        text.set(linePos, String.join(" ", wordList));
     }
 
-    private void scanPosLineAndWord() {
+    @Override
+    public void scanData() {
         System.out.print("Enter line index: ");
-        int linePos = scanner.nextInt();
+        linePos = scanner.nextInt();
         scanner.nextLine(); // Consume newline
-        System.out.print("Enter word index: ");
-        int wordPos = scanner.nextInt();
-        scanner.nextLine(); // Consume newline
-        System.out.print("Enter word: ");
-        String word = scanner.nextLine();
         
-        this.linePos = linePos;
-        this.wordPos = wordPos;
-        this.word = word;
+        System.out.print("Enter word index: ");
+        wordPos = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+        
+        System.out.print("Enter word: ");
+        word = scanner.nextLine();   
     }
 }

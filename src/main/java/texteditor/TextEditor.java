@@ -15,8 +15,13 @@ public class TextEditor {
         commands.add(command);
     }
 
+    public List<Command> getCommands() {
+        return commands;
+    }
+
     public void execute(Integer index) {
         Command command = commands.get(index);
+        command.scanData();
         command.execute();
         undoStack.push(command);
         redoStack.clear();
@@ -38,5 +43,16 @@ public class TextEditor {
         Command command = redoStack.pop();
         command.execute();
         undoStack.push(command);
+    }
+
+    @Override
+    public String toString() {
+        String result = "Available commands: \n";
+        for (int i = 0; i < commands.size() - 1; i++) {
+            result += i + ") " + commands.get(i).getClass().getSimpleName() + "\n";
+        }
+        result += commands.size()-1 + ") " + commands.get(commands.size()-1).getClass().getSimpleName();
+
+        return result;
     }
 }

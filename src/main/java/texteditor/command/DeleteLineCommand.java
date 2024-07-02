@@ -16,9 +16,12 @@ public class DeleteLineCommand implements Command {
         this.buffer = buffer;
     }
 
+    public void setPos(int pos) {
+        this.pos = pos;
+    }
+
     @Override
     public void execute() {
-        scanPos();
         List<String> text = buffer.getBuffer();
         deletedLine = text.remove(pos);
         buffer.setBuffer(text);
@@ -31,9 +34,9 @@ public class DeleteLineCommand implements Command {
         buffer.setBuffer(text);
     }
     
-    private void scanPos() {
+    @Override
+    public void scanData() {
         System.out.print("Enter line index: ");
-        int pos = scanner.nextInt();
-        this.pos = pos;
+        pos = scanner.nextInt();
     }
 }
