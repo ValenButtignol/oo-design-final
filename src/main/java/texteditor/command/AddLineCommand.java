@@ -46,4 +46,12 @@ public class AddLineCommand implements Command {
     public void setPos(int pos) {
         this.pos = pos;
     }
+
+    @Override
+    public Command copy() {
+        AddLineCommand copy = new AddLineCommand(buffer);
+        copy.setLine(line);        
+        copy.setPos(pos);
+        return copy;
+    }
 }

@@ -1,6 +1,5 @@
 package texteditor.command;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -43,7 +42,7 @@ public class AddWordCommand implements Command {
         text.set(linePos, String.join(" ", wordList));
         buffer.setBuffer(text);
     }
-
+    
     @Override
     public void undo() {
         List<String> text = buffer.getBuffer();
@@ -69,5 +68,14 @@ public class AddWordCommand implements Command {
         
         System.out.print("Enter word: ");
         word = scanner.nextLine();   
+    }
+
+    @Override
+    public Command copy() {
+        AddWordCommand copy = new AddWordCommand(buffer);
+        copy.setLinePos(linePos);
+        copy.setWord(word);
+        copy.setWordPos(wordPos);
+        return copy;
     }
 }

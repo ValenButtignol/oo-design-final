@@ -64,7 +64,7 @@ public class Menu {
             } else if (option == showText) {
                 showText();
             } else {
-                return;
+                break;
             }
         }
     }

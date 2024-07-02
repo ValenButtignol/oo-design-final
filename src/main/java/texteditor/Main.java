@@ -20,8 +20,6 @@ public class Main {
         Command deleteWordCommand = new DeleteWordCommand(buffer);
         menu.addCommand(deleteWordCommand);
 
-        menu.display();
-
-        
+        menu.display();        
     }
 }

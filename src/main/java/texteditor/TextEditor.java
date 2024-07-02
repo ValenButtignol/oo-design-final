@@ -23,7 +23,8 @@ public class TextEditor {
         Command command = commands.get(index);
         command.scanData();
         command.execute();
-        undoStack.push(command);
+        Command copyCommand = command.copy();
+        undoStack.push(copyCommand);
         redoStack.clear();
     }
 

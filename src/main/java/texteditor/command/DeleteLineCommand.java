@@ -39,4 +39,11 @@ public class DeleteLineCommand implements Command {
         System.out.print("Enter line index: ");
         pos = scanner.nextInt();
     }
+
+    @Override
+    public Command copy() {
+        DeleteLineCommand copy = new DeleteLineCommand(buffer);
+        copy.setPos(pos);
+        return copy;
+    }
 }

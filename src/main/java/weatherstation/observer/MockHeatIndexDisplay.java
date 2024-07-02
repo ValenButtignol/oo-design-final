@@ -10,7 +10,6 @@ public class MockHeatIndexDisplay implements Observer, DisplayElement {
     private String data;
 
     public MockHeatIndexDisplay(WeatherData weatherData) {
-        this.heatIndex = computeHeatIndex(weatherData.getTemperature(), weatherData.getHumidity());
         this.weatherData = weatherData;
         weatherData.registerObserver(this);
     }

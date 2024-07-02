@@ -60,10 +60,16 @@ public class DeleteWordCommand implements Command {
     public void scanData() {
         System.out.print("Enter line index: ");
         linePos = scanner.nextInt();
-        //scanner.nextLine(); // Consume newline
         System.out.print("Enter word index: ");
         wordPos = scanner.nextInt();
-        //scanner.nextLine(); // Consume newline
     }
-    
+
+    @Override
+    public Command copy() {
+        DeleteWordCommand copy = new DeleteWordCommand(buffer);
+        copy.setDeletedWord(deletedWord);
+        copy.setLinePos(linePos);
+        copy.setWordPos(wordPos);
+        return copy;
+    }
 }
