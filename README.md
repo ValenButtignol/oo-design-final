@@ -4,7 +4,9 @@ This is a set of exercises to test object-oriented design notions. The included 
 
 For each exercise there is a main program or a test suite or both, that can be used to test the implementation.
 
-## Excercises
+> Note: Each of these exersises includes an UML diagram to simplify the visualization of the code on the `diagram` folder inside each project.
+
+## Exercises
 - [DuckSimulator (Adapter)](src/main/java/adapter/ducks)
 - [ImmutableTuple (Adapter)](src/main/java/adapter/list)
 - [AdventureGame](src/main/java/adventuregame)
